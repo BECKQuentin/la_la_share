@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: #212121;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    height: 80px;
+}
+nav ul {
+    display: flex;
+}
+nav a {
+    text-decoration: none;
+    color: #ffff;
+}
+nav li {
+    padding: 20px;
+    list-style: none;
+    text-decoration: none;    
+}
+#navigation {
+    width: 450px;
+   
+}
+#navigation ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*-----MUSICS-----*/
+.musics_box ,
+.friends_box {
+    border: 1px solid white;    
+}
+
+
+
+/*-----FRIENDS----*/
+.admin_contact img {
+    margin: 10px;    
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+.admin_contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.friends {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.friends img {
+    margin: 10px;    
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
+
