@@ -3,14 +3,23 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-html {
+html {    
     font-size: 16px;
 }
-
 body {
     background-color: #212121;
 }
+hr {
+    color: #fff;
+}
+p {
+    color: #fff;
+}
+/*---TITLE---*/
+h1, h2, h3, h4, h5 {
+    color: #fff;
+}
+/*--NAV--*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -39,6 +48,9 @@ nav li {
     align-items: center;
     justify-content: space-between;
 }
+
+
+
 /*--MAIN--*/
 
 /*-----MUSICS-----*/
@@ -47,10 +59,6 @@ nav li {
     border: 2px solid white;
     height: 100vh;    
 }
-
-
-
-
 
 /*-----FRIENDS----*/
 .admin_contact img {
@@ -79,3 +87,79 @@ nav li {
     border-radius: 15px;
 }
 
+
+/*---TCHAT---*/
+
+.tchat {
+    background-color: rgb(0, 60, 60);    
+    z-index: 2;
+    height: 400px;
+    width: 300px;
+    border-bottom-left-radius: 0;  
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;  
+    border-top-right-radius: 15px; 
+    transform: translateX(63vw);
+}
+.menu {  
+    color: #fff;    
+    border-radius: 15px;   
+    background-color:#044A22;
+    height: 40px;
+    width: auto;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px;    
+}
+.tchat_menu_info img {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    margin-right: 5px;
+}
+.tchat_menu_info {
+    display: flex;   
+}
+.tchat_menu_icon {
+    font-size: 1.5rem;
+    margin: 0px 16px;
+}
+.tchat_menu_icon i {
+    margin: 0px 5px;
+}
+.tchat_menu_icon i:hover {
+    cursor: pointer;
+    animation: growUp 1s forwards;
+}
+/*--CONVERSATION--*/
+.conversation_output {
+    margin: 5px;
+    height: 65%;
+    width: auto;
+    background-color: #044A22;
+    border-radius: 20px;
+    border-bottom-left-radius: 0;  
+    border-bottom-right-radius: 0;  
+}
+.conversation_input {
+    margin: 5px;
+    height: 35%;
+    width: auto;
+    background-color: #008A8A ;
+    display: flex;
+}
+
+/*---KEYFRAMES---*/
+
+@keyframes growUp {
+    from {
+      transform: scale(1);      
+    }  
+    50% {
+        transform: scale(1.15);
+    }
+    to {
+      transform: scale(1.1);      
+    }
+  }
