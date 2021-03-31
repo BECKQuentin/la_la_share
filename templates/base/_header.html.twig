@@ -6,12 +6,24 @@
 		<div id="navigation">			
 			<ul>
 				<li><a href="">Accueil</a></li>
-				<li><a href="">Musique</a></li>				
-				<li class="user">
-					<a href="">					
-						<i class="fas fa-user-cog"></i>
-					</a>
+				<li><a href="">Musique</a></li>	
+				<li class="nav-item user">
+					<a class="nav-link" href="#"><i class="fas fa-user-cog"></i></a>
 				</li>
+			{# {% if is_granted('ROLE_USER') %} #}
+				{# <li class="nav-item user">
+					<a class="nav-link" href="{{ path('redirect_user') }}"><i class="fas fa-user-cog"></i></a>
+				</li>
+				{# 
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+				</li>
+			{# {% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+				</li>
+			{% endif %}				 #}
+				
 			</ul>
 		</div>
 	</nav>

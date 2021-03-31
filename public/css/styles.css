@@ -39,12 +39,16 @@ nav li {
     align-items: center;
     justify-content: space-between;
 }
+/*--MAIN--*/
 
 /*-----MUSICS-----*/
 .musics_box ,
 .friends_box {
-    border: 1px solid white;    
+    border: 2px solid white;
+    height: 100vh;    
 }
+
+
 
 
 
@@ -64,6 +68,9 @@ nav li {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.friends:hover {
+
 }
 .friends img {
     margin: 10px;    

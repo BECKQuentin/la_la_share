@@ -15,26 +15,24 @@
         {% endblock %}
         
     </head>
-    <body class="d-flex flex-column h-100">
-
+    <body class="d-flex flex-column">
         <div >            
             {{ render(controller('App\\Controller\\BaseController::header', {'routeName' : route_name } )) }}
 
 
-            <div class="container-fluid row h-100"> 
+            <div class="row h-100"> 
                 <div class="musics_box col-2">
                     {{ render(controller('App\\Controller\\BaseController::musics', {'routeName' : route_name } )) }}
                 </div>
                 <div class="col-8">
                     {% include 'base/_flash.html.twig' %}
-                    {% block body %}{% endblock %}
+                    {% block body %}
+                    
+                    {% endblock %}
                 </div>
                 <div class="friends_box col-2">
                      {{ render(controller('App\\Controller\\BaseController::friends', {'routeName' : route_name } )) }}
-                </div>   
-
-                
-                
+                </div> 
             </div>
         </div>
 
