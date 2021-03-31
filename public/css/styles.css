@@ -1,3 +1,19 @@
+/*-VARIABLE-*/
+:root {
+    --tchat-box-color:
+    --tchat-menu-color:
+    --tchat-bg-color: brown;
+    --tchat-message-user-color: brown;
+    --tchat-message-receiver-color: brown;
+    --tchat-message-input-color: brown;
+
+
+}
+element {
+    background-color: var(--main-bg-color);
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +26,7 @@ body {
     background-color: #212121;
 }
 hr {
-    color: #fff;
+    color: #303436;
 }
 p {
     color: #fff;
@@ -56,9 +72,13 @@ nav li {
 /*-----MUSICS-----*/
 .musics_box ,
 .friends_box {
-    border: 2px solid white;
-    height: 100vh;    
+    border: 2px solid #303436;
+    height: 100vh;
+    overflow-y: scroll;   
 }
+.invisible-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
 /*-----FRIENDS----*/
 .admin_contact img {
@@ -77,8 +97,11 @@ nav li {
     justify-content: center;
     align-items: center;
 }
-.friends:hover {
-
+.admin_contact:hover,
+.friends:hover {    
+    cursor: pointer;
+    background-color: #333333;
+    animation: growUp 1s forwards;
 }
 .friends img {
     margin: 10px;    
@@ -93,24 +116,29 @@ nav li {
 .tchat {
     background-color: rgb(0, 60, 60);    
     z-index: 2;
-    height: 400px;
-    width: 300px;
+    height: 60%;
+    width: 25%;
+    margin-bottom: 2px;
     border-bottom-left-radius: 0;  
     border-bottom-right-radius: 0;
     border-top-left-radius: 15px;  
     border-top-right-radius: 15px; 
-    transform: translateX(63vw);
+    transform: translateX(57vw);
 }
 .menu {  
     color: #fff;    
-    border-radius: 15px;   
-    background-color:#044A22;
-    height: 40px;
+    border-bottom-left-radius: 0;  
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;  
+    border-top-right-radius: 15px;   
+    background-color:#0C437D;
+    border-bottom: 1px solid black;
+    height: 10%;
     width: auto;    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 6px;    
+    margin: 4px 4px 0px 4px;    
 }
 .tchat_menu_info img {
     height: 30px;
@@ -126,28 +154,73 @@ nav li {
     margin: 0px 16px;
 }
 .tchat_menu_icon i {
-    margin: 0px 5px;
+    margin: 0px 4px;
 }
 .tchat_menu_icon i:hover {
     cursor: pointer;
     animation: growUp 1s forwards;
 }
-/*--CONVERSATION--*/
+/*--conversation output--*/
 .conversation_output {
-    margin: 5px;
-    height: 65%;
+    margin: 0px 4px;
+    height: 64%;
     width: auto;
-    background-color: #044A22;
-    border-radius: 20px;
-    border-bottom-left-radius: 0;  
-    border-bottom-right-radius: 0;  
+    background-color: #092E57;    
+    overflow-y: scroll;
+    scrollbar-shadow-color: #212121;    
 }
+
+.conversation_output p {
+    width: fit-content;
+    padding: 2px 5px;
+    margin: 2px;
+    border-radius: 6px;
+    color: #fff;
+}
+.conversation_output_user {   
+    background-color: #0B3B70;
+}
+.conversation_output_friends {
+    background-color: #4170A3;
+}
+/*--conversation input--*/
 .conversation_input {
-    margin: 5px;
-    height: 35%;
+    margin: 0px 4px 0px 4px;
+    height: 26%;
     width: auto;
-    background-color: #008A8A ;
+    background-color:#0C437D ;
     display: flex;
+    flex-direction: column;
+}
+.conversation_input_message {
+    margin: 4px 4px 0px 4px;       
+}
+.conversation_input_message textarea {
+    border-radius: 4px;
+    background-color: #4170A3;
+    resize: none;
+}
+.conversation_input_icon {
+    display: flex;  
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 4px;
+}
+.conversation_input_icon_btn button {
+    border: 0;
+    padding: 0px 2px;    
+    border-radius: 4px;
+    background-color: #212121;
+    color: #fff;
+}
+.conversation_input_icon_btn button:hover {
+    animation: growUp 1s forwards;
+}
+
+
+/*---FOOTER----*/
+footer {
+    background-color: red;
 }
 
 /*---KEYFRAMES---*/
@@ -157,9 +230,9 @@ nav li {
       transform: scale(1);      
     }  
     50% {
-        transform: scale(1.15);
+        transform: scale(1.12);
     }
     to {
-      transform: scale(1.1);      
+      transform: scale(1.08);      
     }
   }

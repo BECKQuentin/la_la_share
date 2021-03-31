@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MusicsController!{% endblock %}
+
+{% block body %}
+
+    <div class="player_musics">
+        <audio src=" {{ asset('upload/musics/keken.mp3') }}"></audio>
+    </div>
+    
+
+    <div class="tchat fixed-bottom">
+        <div class="menu">
+            <div class="tchat_menu_info m-1">
+                <img src="{{ asset('upload/img/pacman.jpg') }}" alt="user_img">
+                <h5>Pacman</h5>
+            </div>
+            <div class="tchat_menu_icon">                
+                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-times"></i>
+            </div>        
+        </div>
+        <div class="conversation_output">
+            <!--Entrez message a AFFICHER ici-->
+
+            <p class="conversation_output_user">Hello</p>
+            <br>
+            
+            <p class="conversation_output_friends">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, pariatur.</p>
+            <br>          
+            
+            <p class="conversation_output_user">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus, hic!</p>
+            <br>
+
+            <p class="conversation_output_friends">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, pariatur.</p>
+            <br>   
+
+        </div>
+        <div class="conversation_input">
+            
+            <div class="conversation_input_message">
+                <!--Entrez message a ENVOYER ici-->
+                <textarea name="" id="" cols="38" rows="2"></textarea>
+            </div>
+            <div class="conversation_input_icon">
+                <div class="conversation_input_icon_btn">
+                    <button>Envoyer</button>
+                </div>  
+            </div>
+            
+        </div>
+    </div>
+
+{% endblock %}

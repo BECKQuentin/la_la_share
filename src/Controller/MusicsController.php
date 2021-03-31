@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Controller\Security;
+namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SecurityController extends AbstractController
+class MusicsController extends AbstractController
 {
     /**
-     * @Route("/security", name="security")
+     * @Route("/musics", name="musics")
      */
     public function index(): Response
     {
-        return $this->render('security/index.html.twig', [
-           
+        return $this->render('musics/musics.html.twig', [
+            
         ]);
     }
 }
