@@ -20,11 +20,11 @@
         <div>            
             {{ render(controller('App\\Controller\\BaseController::header', {'routeName' : route_name } )) }}
 
-            <div class="row gx-0"> 
-                <div class="musics_box col-2">
+            <div class="row gx-0 position-relative">             
+                <div class="musics_box show">
                     {{ render(controller('App\\Controller\\BaseController::musics', {'routeName' : route_name } )) }}
                 </div>
-                <div class="main col-8">
+                <div class="main col-8 offset-lg-2">
                     <div class="body">
                         {% include 'base/_flash.html.twig' %}
                         {% block body %}
@@ -36,7 +36,7 @@
                         {% include 'base/_footer.html.twig' %} 
                     </div>                    
                 </div>
-                <div class="friends_box col-2">
+                <div class="friends_box show">
                      {{ render(controller('App\\Controller\\BaseController::friends', {'routeName' : route_name } )) }}
                 </div>                
             </div>            

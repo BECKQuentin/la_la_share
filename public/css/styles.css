@@ -11,11 +11,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #fff;
 }
 html {    
     font-size: 16px;
 }
 body {
+    overflow-x: hidden;
     background-color: #212121;
 }
 hr {
@@ -37,7 +39,7 @@ p {
 .friends_box::-webkit-scrollbar-thumb {
     background-color: #303436;    /* color of the scroll thumb */
     border-radius: 0px;       /* roundness of the scroll thumb */
-    border: 3px solid black;  /* creates padding around scroll thumb */
+    border: 1px solid black;  /* creates padding around scroll thumb */
 }
 .conversation_output::-webkit-scrollbar,
 .conversation_input::-webkit-scrollbar {
@@ -48,8 +50,7 @@ p {
 .conversation_input::-webkit-scrollbar-thumb {
     background-color: var(--tchat-1);    /* color of the scroll thumb */
     border-radius: 0px;       /* roundness of the scroll thumb */
-    border: 3px solid var(--tchat-2);  /* creates padding around scroll thumb */
-
+    border: 1px solid var(--tchat-4);  /* creates padding around scroll thumb */
 }
 
 /*---TITLE---*/
@@ -62,8 +63,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     background-color: #212121;
-    height: 10vh;
-    border: 2px solid #303436;
+    height: 10vh;    
 }
 nav ul {
     display: flex;
@@ -81,12 +81,11 @@ nav li {
 nav a:hover {
     color: #fff;    
 }
-nav li:hover:not(.user) {
+nav li:hover:not(:last-child) {
     animation: growUp 1s forwards;
 }
 #navigation {
-    width: 450px;
-   
+    width: 450px;   
 }
 #navigation ul {
     display: flex;
@@ -94,11 +93,13 @@ nav li:hover:not(.user) {
     justify-content: space-between;
 }
 /*--MAIN--*/
-.main {
+.main {  
     overflow-y: scroll;
+    position: relative;
+    height: 90vh;
 }
 .body {
-    height: 200%;
+    height: 800px;
 }
 
 /*-----MUSICS-----*/
@@ -106,7 +107,51 @@ nav li:hover:not(.user) {
 .friends_box {
     border: 2px solid #303436;
     height: 90vh;
-    overflow-y: scroll;   
+    overflow-y: scroll;
+    overflow-x: hidden;   
+}
+.musics_slide:hover,
+.friends_slide:hover {
+    border-radius: 20px;
+    background-color: #333333;
+    animation: growUp 1s forwards;
+    cursor: pointer;
+}
+.musics_slide {
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+.friends_slide {
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+}
+.musics_box {
+    position: absolute;
+    width: 200px;
+    top: 0;
+    bottom: 0;
+    left: -165px;
+    transition: all .3s ease-in-out;
+}
+.friends_box {
+    position: absolute;
+    width: 200px;
+    top: 0;
+    bottom: 0;
+    right: -165px;
+    transition: all .3s ease-in-out;
+}
+.musics_box.show {
+    left: 0;
+}
+.friends_box.show {
+    right: 0;
 }
 
 /*-----FRIENDS----*/

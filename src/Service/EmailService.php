@@ -30,12 +30,5 @@ class EmailService
             $data['to'] = $this->emailDeveloper;
         }
     }
-
-    $email = (new TemplatedEmail())
-        ->from($data['from'] ?? $this->emailAdmin)
-        ->to($data['to'] ?? $this->emailAdmin)
-        ->replyTo($data['replyTo'] ?? $data['from'] ?? $this->emailAdmin)
-        ->subject($data['subject'] ?? 'La-la-share')
-        ->htmlTemplate($data['template'])
-        ->context($data['context'] ?? [])
+  
 }
