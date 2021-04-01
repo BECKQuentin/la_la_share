@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,10 +26,12 @@ class BaseController extends AbstractController
     }
 
     ////////////////// FRIENDS ///////////////////////////
-    public function friends(string $routeName)
+    public function friends(string $routeName, UserRepository $userRepository)
     {        
+        $users = $userRepository->findAll();
         return $this->render('base/_friends.html.twig', [            
             'route_name' => $routeName,
+            'users' => $users            
         ]);     
     }
 

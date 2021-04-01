@@ -1,6 +1,29 @@
-$(function(){ 
+$(function(){
+    $(".friends").click(function(){
+     
+        $.ajax({
+           url : '/message/1/2',
+           type : 'GET',
+           dataType : 'json',
+           success : function(messages, statut){           
+                loadMessages(messages);
+                         
+           },    
+           error : function(resultat, statut, erreur){    
+           }    
+        });         
+        
+    });
+    function loadMessages(messages) {
+        var html = '';
+        messages.forEach(message => {
+            html += "<div>"+message.message+"</div>";
+        });
+        $('.conversation_output').html(html);
+    }
+    
 
-    /////////HIDE CHAT///////
+    /////////HIDE TCHAT///////
     $('.tchat_slide').on('click', function() {   
         $('.tchat_slide i').toggleClass('fa-chevron-down'); 
         $('.tchat_slide i').toggleClass('fa-chevron-up'); 
@@ -20,13 +43,12 @@ $(function(){
                 // Animation complete.
             });    
         }        
-    });
-    ////////CLOSE CHAT//////  
-    $('.musics_close').on('click', function() {     
+    });    
+    ////////CLOSE TCHAT//////  
+    $('.tchat_close').on('click', function() { 
         $('.tchat').css('display', 'none'); 
     });
-
-    /////////HIDE MUSICS///////
+    /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {
         $('.main').removeClass('col-10')   
         $('.musics_slide i').toggleClass('fa-chevron-left'); 
@@ -37,13 +59,13 @@ $(function(){
         $('.main').toggleClass('offset-lg-1');            
         $('.main').toggleClass('col-9'); 
         $('.main').toggleClass('col-8');
-        ////////HIDE MUSICS && FRIENDS////////
+        ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');            
         }   
                        
     });
-    /////////HIDE FRIENDS///////
+    /////////HIDE FRIENDS BOX///////
     $('.friends_slide').on('click', function() {
         $('.main').removeClass('col-10')   
         $('.friends_slide i').toggleClass('fa-chevron-left'); 
@@ -53,13 +75,16 @@ $(function(){
         $('.main').toggleClass('col-9');
         $('.main').toggleClass('col-8');
          
-        ////////HIDE MUSICS && FRIENDS////////
+        ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');                        
-        }
-             
+        }             
     });
-   
+
+    ////////CLOSE AUDIO///////////
+    $('.player_musics_menu_close').on('click', function() {
+        $('.player_musics').css('display', 'none');
+    })   
 
     
 
