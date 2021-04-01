@@ -9,12 +9,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class TchatController extends AbstractController
 {
     /**
-     * @Route("/tchat", name="tchat")
+     * @Route("/", name="tchat")
      */
     public function index(): Response
     {
         return $this->render('tchat/index.html.twig', [
-            'controller_name' => 'TchatController',
+            
         ]);
+    }
+
+
+
+     /**
+     * @Route("/message/{id_user}/{id_friend}", name="message")
+     */
+    public function message(): Response
+    {
+        $message = [
+            [
+                'id' => 1,
+                'message' => 'Salut ca va?'
+            ],
+            [
+                'id' => 2,
+                'message' => 'Bien et toi'
+            ]
+        ];
+        return $this->json($message);
+        // apelle ajax en jquery
     }
 }

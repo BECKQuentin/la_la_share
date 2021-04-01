@@ -183,6 +183,15 @@ nav li:hover:not(:last-child) {
     width: 30px;
     border-radius: 15px;
 }
+/*---AUDIO---*/
+.player_musics_img {
+    height: 200px;
+    width: 250px;
+}
+.player_musics_img img {
+    height: 100%; 
+    width: auto;   
+}
 
 /*---TCHAT---*/
 

@@ -5,11 +5,30 @@
 {% block body %}
 
     <div class="player_musics">
-        <audio src=" {{ asset('upload/musics/keken.mp3') }}"></audio>
+
+        <div class="player_musics_img">
+            <img src="{{ asset('upload/musics/img/test.jpg') }}" alt="">
+        </div> 
+
+        <audio controls preload="auto">
+            <source src="{{ asset('upload/musics/musics/keken.mp3') }}" type="audio/mpeg">
+
+            <!-- fallback pour les navigateurs qui ne supportent pas mp3 -->
+            <source src="{{ asset('upload/musics/musics/keken.ogg') }}" type="audio/ogg">
+
+            <!-- fallback pour les navigateurs qui ne supportent pas la balise audio -->
+            <a href="audiofile.mp3">Download</a>
+        </audio>
+        
     </div> 
 
-    {% include "tchat/tchat.html.twig" %}
 
-   
+
+
+
+
+
+    {% include "tchat/tchat.html.twig" %}  
+
 
 {% endblock %}

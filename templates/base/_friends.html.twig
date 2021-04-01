@@ -10,10 +10,18 @@
         <img src="{{ asset('upload/img/default_avatar.png')}}" alt="admin_img">
         <h5>Admin</h5>
     </div>
-    <hr>
-    <div class="friends">
-        <img src="{{ asset('upload/img/pacman.jpg')}}" alt="admin_img">
-        <h5>Pac-man</h5>    
-    </div>
+    <hr>    
+    
+
+        {% for user in users %}
+        <div class="friends">
+
+            <img src="{{ asset('upload/img/pacman.jpg')}}" alt="friends_img">
+            <h5>{{ user.pseudo }}</h5>    
+    
+        </div>
+        {% endfor %}
+
+       
 
 </div>

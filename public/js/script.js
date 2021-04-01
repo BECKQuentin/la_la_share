@@ -1,4 +1,27 @@
-$(function(){ 
+$(function(){
+    $(".friends").click(function(){
+     
+        $.ajax({
+           url : '/message/1/2',
+           type : 'GET',
+           dataType : 'json',
+           success : function(messages, statut){           
+                loadMessages(messages);
+                         
+           },    
+           error : function(resultat, statut, erreur){    
+           }    
+        });         
+        
+    });
+    function loadMessages(messages) {
+        var html = '';
+        messages.forEach(message => {
+            html += "<div>"+message.message+"</div>";
+        });
+        $('.conversation_output').html(html);
+    }
+    
 
     /////////HIDE CHAT///////
     $('.tchat_slide').on('click', function() {   
