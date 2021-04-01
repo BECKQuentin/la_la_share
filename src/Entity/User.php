@@ -51,6 +51,7 @@ class User implements UserInterface
     private $lastname;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $pseudo;

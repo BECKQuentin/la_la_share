@@ -23,11 +23,11 @@ class EmailService
 
     public function send(array $data): void
     {
-        if($this->appEnv === 'dev') {
+        /*if($this->appEnv === 'dev') {
             if(!isset($data['subject'])) {
                 throw new Exception("You should specify a subject");
             }
             $data['to'] = $this->emailDeveloper;
-        }
+        }*/
     }
 }
