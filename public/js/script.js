@@ -32,17 +32,14 @@ $(function(){
         $('.musics_slide i').toggleClass('fa-chevron-left'); 
         $('.musics_slide i').toggleClass('fa-chevron-right'); 
         $('.musics_box').toggleClass('show');
-        $('.musics_box').toggleClass('hide'); 
-        window.setTimeout(function() {
-            $('.main').toggleClass('offset-lg-2') 
-            $('.main').toggleClass('offset-lg-1')
-            $('.main').toggleClass('col-8')
-            $('.main').toggleClass('col-9') 
-        }, 100);
+        $('.musics_box').toggleClass('hide');         
+        $('.main').toggleClass('offset-lg-2'); 
+        $('.main').toggleClass('offset-lg-1');            
+        $('.main').toggleClass('col-9'); 
+        $('.main').toggleClass('col-8');
         ////////HIDE MUSICS && FRIENDS////////
-        if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {
-            $('.main').addClass('col-10')
-            $('.main').removeClass('col-8') 
+        if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
+            $('.main').addClass('col-10');            
         }   
                        
     });
@@ -52,15 +49,13 @@ $(function(){
         $('.friends_slide i').toggleClass('fa-chevron-left'); 
         $('.friends_slide i').toggleClass('fa-chevron-right'); 
         $('.friends_box').toggleClass('show'); 
-        $('.friends_box').toggleClass('hide'); 
-        window.setTimeout(function() {
-            $('.main').toggleClass('col-8')
-            $('.main').toggleClass('col-9') 
-        }, 100); 
+        $('.friends_box').toggleClass('hide');        
+        $('.main').toggleClass('col-9');
+        $('.main').toggleClass('col-8');
+         
         ////////HIDE MUSICS && FRIENDS////////
-        if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {
-            $('.main').addClass('col-10')
-            $('.main').removeClass('col-8')            
+        if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
+            $('.main').addClass('col-10');                        
         }
              
     });
