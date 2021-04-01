@@ -16,12 +16,12 @@ class EmailService
         string $emailAdmin,
         string $emailDeveloper,
         string $appEnv
-    )
+        )
     {
         
     }
 
-    public function send(array $data): bool
+    public function send(array $data): void
     {
         if($this->appEnv === 'dev') {
             if(!isset($data['subject'])) {
@@ -31,11 +31,5 @@ class EmailService
         }
     }
 
-    $email = (new TemplatedEmail())
-        ->from($data['from'] ?? $this->emailAdmin)
-        ->to($data['to'] ?? $this->emailAdmin)
-        ->replyTo($data['replyTo'] ?? $data['from'] ?? $this->emailAdmin)
-        ->subject($data['subject'] ?? 'La-la-share')
-        ->htmlTemplate($data['template'])
-        ->context($data['context'] ?? [])
+
 }
