@@ -27,27 +27,30 @@ p {
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
 .musics_box::-webkit-scrollbar,
-.friends_box::-webkit-scrollbar,
-.conversation_output::-webkit-scrollbar,
-.conversation_input::-webkit-scrollbar {
+.friends_box::-webkit-scrollbar
+{
     width: 12px;               /* width of the entire scrollbar */
-}
-.main::-webkit-scrollbar,
-.musics_box::-webkit-scrollbar,
-.friends_box::-webkit-scrollbar,
-.conversation_output::-webkit-scrollbar,
-.conversation_input::-webkit-scrollbar {
-    background: #303436;        /* color of the tracking area */
+    background: #212121;     /* color of the tracking area */
 }
 .main::-webkit-scrollbar-thumb,
 .musics_box::-webkit-scrollbar-thumb,
-.friends_box::-webkit-scrollbar-thumb,
+.friends_box::-webkit-scrollbar-thumb {
+    background-color: #303436;    /* color of the scroll thumb */
+    border-radius: 0px;       /* roundness of the scroll thumb */
+    border: 3px solid black;  /* creates padding around scroll thumb */
+}
+.conversation_output::-webkit-scrollbar,
+.conversation_input::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+    background: var(--tchat-1);     /* color of the tracking area */
+}
 .conversation_output::-webkit-scrollbar-thumb,
 .conversation_input::-webkit-scrollbar-thumb {
-    background-color: #212121;    /* color of the scroll thumb */
+    background-color: var(--tchat-1);    /* color of the scroll thumb */
     border-radius: 0px;       /* roundness of the scroll thumb */
-    border: 3px solid var(--tchat-box-color);  /* creates padding around scroll thumb */
-  }
+    border: 3px solid var(--tchat-2);  /* creates padding around scroll thumb */
+
+}
 
 /*---TITLE---*/
 h1, h2, h3, h4, h5 {
