@@ -30,5 +30,4 @@ class EmailService
             $data['to'] = $this->emailDeveloper;
         }
     }
-  
 }
