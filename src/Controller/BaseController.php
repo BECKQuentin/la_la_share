@@ -19,7 +19,7 @@ class BaseController extends AbstractController
     ////////////////// MUSICS ///////////////////////////
     public function musics(string $routeName)
     {        
-        return $this->render('base/musics.html.twig', [            
+        return $this->render('base/_musics.html.twig', [            
             'route_name' => $routeName,
         ]);     
     }
@@ -27,7 +27,7 @@ class BaseController extends AbstractController
     ////////////////// FRIENDS ///////////////////////////
     public function friends(string $routeName)
     {        
-        return $this->render('base/friends.html.twig', [            
+        return $this->render('base/_friends.html.twig', [            
             'route_name' => $routeName,
         ]);     
     }
