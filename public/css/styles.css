@@ -36,20 +36,20 @@ p {
 }
 .main::-webkit-scrollbar-thumb,
 .musics_box::-webkit-scrollbar-thumb,
-.friends_box::-webkit-scrollbar-thumb {
+.friends_box::-webkit-scrollbar-thumb {    
     background-color: #303436;    /* color of the scroll thumb */
-    border-radius: 0px;       /* roundness of the scroll thumb */
+    border-radius: 2px;       /* roundness of the scroll thumb */
     border: 1px solid black;  /* creates padding around scroll thumb */
 }
 .conversation_output::-webkit-scrollbar,
-.conversation_input::-webkit-scrollbar {
+.conversation_input::-webkit-scrollbar {    
     width: 12px;               /* width of the entire scrollbar */
     background: var(--tchat-1);     /* color of the tracking area */
 }
 .conversation_output::-webkit-scrollbar-thumb,
 .conversation_input::-webkit-scrollbar-thumb {
     background-color: var(--tchat-1);    /* color of the scroll thumb */
-    border-radius: 0px;       /* roundness of the scroll thumb */
+    border-radius: 2px;
     border: 1px solid var(--tchat-4);  /* creates padding around scroll thumb */
 }
 
@@ -99,37 +99,51 @@ nav li:hover:not(:last-child) {
     height: 90vh;
 }
 .body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     height: 800px;
 }
 
 /*-----MUSICS-----*/
 .musics_box ,
 .friends_box {
-    border: 2px solid #303436;
+    border: 1px solid #303436;
     height: 90vh;
     overflow-y: scroll;
-    overflow-x: hidden;   
+    overflow-x: hidden;
+    border-radius: 5px;   
 }
 .musics_slide:hover,
-.friends_slide:hover {
+.friends_slide:hover {    
     border-radius: 20px;
     background-color: #333333;
     animation: growUp 1s forwards;
     cursor: pointer;
 }
+.music_slide:hover {
+    padding-left: 6px;
+}
+.friends_slide:hover {
+    padding-right: 6px;
+}
 .musics_slide {
     color: #fff;
+    padding-left: 6px;    
     font-size: 1.5rem;
     position: absolute;
+    z-index: 2;
     top: 50%;
-    right: 0;
+    right: 8px;
 }
 .friends_slide {
     color: #fff;
+    padding-right: 6px;
     font-size: 1.5rem;
     position: absolute;
+    z-index: 2;
     top: 50%;
-    left: 10px;
+    left: 8px;
 }
 .musics_box {
     position: absolute;
@@ -168,14 +182,14 @@ nav li:hover:not(:last-child) {
 }
 .friends {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 .admin_contact:hover,
 .friends:hover {    
     cursor: pointer;
     background-color: #333333;
-    animation: growUp 1s forwards;
+    animation: growUpp 1s forwards;
 }
 .friends img {
     margin: 10px;    
@@ -183,19 +197,47 @@ nav li:hover:not(:last-child) {
     width: 30px;
     border-radius: 15px;
 }
-/*---AUDIO---*/
+/*---CARD AUDIO---*/
+.player_musics {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px 10px 10px;
+    border: 1px solid #303436;
+    border-radius: 5px;    
+}
 .player_musics_img {
     height: 200px;
-    width: 250px;
+    width: 350px;    
 }
 .player_musics_img img {
-    height: 100%; 
-    width: auto;   
+    height: auto; 
+    width: 100%;   
+}
+.player_musics_audio {
+    padding-top: 16px;
+}
+.player_musics_menu { 
+    width: 100%;   
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;    
+}
+.player_musics_menu_close {
+    margin-left: 16px;
+    padding-bottom: 5px;
+}
+.player_musics_menu_close:hover,
+.player_musics_menu_share:hover {
+    animation: growUpp 1s forwards;
+    cursor: pointer;
 }
 
 /*---TCHAT---*/
 
-.tchat {
+.tchat {    
     background-color: var(--tchat-5);    
     z-index: 2;
     height: 350px;
@@ -203,16 +245,16 @@ nav li:hover:not(:last-child) {
     margin-bottom: 2px;
     border-bottom-left-radius: 0;  
     border-bottom-right-radius: 0;
-    border-top-left-radius: 15px;  
-    border-top-right-radius: 15px; 
+    border-top-left-radius: 5px;  
+    border-top-right-radius: 5px; 
     transform: translateX(57vw);
 }
 .tchat_menu {  
     color: #fff;    
     border-bottom-left-radius: 0;  
     border-bottom-right-radius: 0;
-    border-top-left-radius: 15px;  
-    border-top-right-radius: 15px;  
+    border-top-left-radius: 5px;  
+    border-top-right-radius: 5px;  
     border-bottom: 1px solid black;
     height: 10%;
     width: auto;    
@@ -238,10 +280,13 @@ nav li:hover:not(:last-child) {
 .tchat_menu_icon i {
     margin: 0px 8px;
 }
-.tchat_menu_icon i:hover {
+.tchat_slide:hover,
+.tchat_close:hover {
     cursor: pointer;
-    animation: growUp 1s forwards;
+    animation: growUpp 1s forwards;
 }
+
+
 /*--conversation output--*/
 .conversation_output {
     margin: 0px 4px;
@@ -250,7 +295,6 @@ nav li:hover:not(:last-child) {
     background-color: var(--tchat-1);    
     overflow-y: scroll;
 }
-
 .conversation_output p {
     width: fit-content;
     padding: 2px 5px;
@@ -326,9 +370,9 @@ footer {
       transform: scale(1);      
     }  
     50% {
-        transform: scale(1.3);
+        transform: scale(1.2);
     }
     to {
-      transform: scale(1.2);      
+      transform: scale(1.16);      
     }
 }
