@@ -16,7 +16,7 @@
 html {    
     font-size: 16px;
 }
-body {
+body {    
     overflow-x: hidden;
     background-color: #212121;
 }
@@ -29,6 +29,10 @@ p {
     color: #fff;
 }
 ul {
+    padding: 0;
+    margin: 0;
+}
+li {
     margin: 0;
     padding: 0;
 }
@@ -67,12 +71,12 @@ h1, h2, h3, h4, h5 {
 }
 /*--NAV--*/
 nav {
-    padding: 40px 0;
+    margin-bottom: 1vh;
+    height: 9vh;    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #212121;
-    height: 10vh;    
+    background-color: #212121;        
 }
 nav ul {
     display: flex;
@@ -83,7 +87,7 @@ nav a {
     color: #ffff;
 }
 nav li {
-    padding: 20px;
+    padding: 0px 20px;
     list-style: none;
     text-decoration: none;    
 }
@@ -93,7 +97,7 @@ nav a:hover {
 nav li:hover:not(:last-child) {
     animation: growUp 1s forwards;
 }
-#navigation {
+#navigation {   
     width: 450px;
     border-radius: 5px;
     border: 1px solid #303436;   
