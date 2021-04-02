@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\MusicsRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,17 +19,19 @@ class BaseController extends AbstractController
     }
 
     ////////////////// MUSICS ///////////////////////////
-    public function musics(string $routeName)
-    {        
+    public function musics(string $routeName, MusicsRepository $musicsRepository)
+    {    
+        $muscis = $musicsRepository->findAll();    
         return $this->render('base/_musics.html.twig', [            
             'route_name' => $routeName,
+            'musics' => $muscis            
         ]);     
     }
 
     ////////////////// FRIENDS ///////////////////////////
     public function friends(string $routeName, UserRepository $userRepository)
     {        
-        $users = $userRepository->findAll();
+        $users = $userRepository->findAll();//remplacer par finMyfriends
         return $this->render('base/_friends.html.twig', [            
             'route_name' => $routeName,
             'users' => $users            

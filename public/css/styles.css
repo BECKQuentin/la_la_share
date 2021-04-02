@@ -24,7 +24,13 @@ hr {
     color: #303436;
 }
 p {
+    margin: 0;
+    padding: 0;
     color: #fff;
+}
+ul {
+    margin: 0;
+    padding: 0;
 }
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
@@ -56,9 +62,12 @@ p {
 /*---TITLE---*/
 h1, h2, h3, h4, h5 {
     color: #fff;
+    padding: 0;
+    margin: 0;
 }
 /*--NAV--*/
 nav {
+    padding: 40px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,7 +94,9 @@ nav li:hover:not(:last-child) {
     animation: growUp 1s forwards;
 }
 #navigation {
-    width: 450px;   
+    width: 450px;
+    border-radius: 5px;
+    border: 1px solid #303436;   
 }
 #navigation ul {
     display: flex;
@@ -105,14 +116,14 @@ nav li:hover:not(:last-child) {
     height: 800px;
 }
 
-/*-----MUSICS-----*/
+/*-----MUSICS & FRIENDS-----*/
 .musics_box ,
 .friends_box {
+    border-radius: 5px;
     border: 1px solid #303436;
     height: 90vh;
     overflow-y: scroll;
-    overflow-x: hidden;
-    border-radius: 5px;   
+    overflow-x: hidden;       
 }
 .musics_slide:hover,
 .friends_slide:hover {    
@@ -167,7 +178,18 @@ nav li:hover:not(:last-child) {
 .friends_box.show {
     right: 0;
 }
+/*----MUSICS---*/
+.musics_widgets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.musics_widgets_img img {        
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+}
 /*-----FRIENDS----*/
 .admin_contact img {
     margin: 10px;    
@@ -186,10 +208,11 @@ nav li:hover:not(:last-child) {
     align-items: center;
 }
 .admin_contact:hover,
-.friends:hover {    
+.friends:hover,
+.musics_widgets:hover {    
     cursor: pointer;
     background-color: #333333;
-    animation: growUpp 1s forwards;
+    animation: growUp 1s forwards;
 }
 .friends img {
     margin: 10px;    
