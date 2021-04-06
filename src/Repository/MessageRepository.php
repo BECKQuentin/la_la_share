@@ -19,20 +19,18 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
  
-    public function findConversationBetween($viewer, $interlocutor)
+    public function findConversationBetween($sender, $receiver)
     {
         return $this->createQueryBuilder('m')
-            ->where('m.sender_id = :viewer')
-            ->andWhere('m.receiver_id = :interlocutor')
-            ->andWhere('m.sender_id = :interlocutor')
-            ->andWhere('m.receiver_id = :viewer')
-            ->setParameter('viewer', $viewer)
-            ->setParameter('interlocutor', $interlocutor)
-            ->orderBy('m.send_at', 'DESC')
+            ->orWhere('m.sender_id = :sender AND m.receiver_id = :receiver')            
+            ->orWhere('m.sender_id = :receiver AND m.receiver_id = :sender')            
+            ->setParameter('sender', $sender)
+            ->setParameter('receiver', $receiver)
+            ->orderBy('m.send_at', 'ASC')
             ->setMaxResults(50)
             ->getQuery()
             ->getResult()
         ;
-    }
+    }   
     
 }

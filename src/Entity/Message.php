@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MessageRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +37,11 @@ class Message
      * @ORM\Column(type="text")
      */
     private $content;
+    
+    public function __construct()
+    {
+        $this->send_at = new DateTime();
+    }
 
     public function getId(): ?int
     {

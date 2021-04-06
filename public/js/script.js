@@ -1,27 +1,70 @@
-$(function(){
-    $(".friends").click(function(){
-     
-        $.ajax({
-           url : '/message/1/2',
-           type : 'GET',
-           dataType : 'json',
-           success : function(messages, statut){           
-                loadMessages(messages);
-                         
-           },    
-           error : function(resultat, statut, erreur){    
-           }    
-        });         
-        
+$(function(){    
+
+    var getMessageUrl;
+    var sendMessageUrl;
+    var tchatIsOpened = false;
+
+    //////DEPLOY TCHAT WINDOW/////
+    $(".friends").click(function() { 
+        tchatIsOpened = true;
+        //recuper id/friend et afficher dans titre du tchat
+        getMessageUrl = $(this).data('getMessageUrl');
+        sendMessageUrl = $(this).data('sendMessageUrl');
+        $('#tchat h5').text($(this).data('friendPseudo'));
+        loadMessages();  
+        console.log(tchatIsOpened);
+        if (tchatIsOpened === true) {
+            $('.tchat').css('display', 'block');
+        }      
     });
-    function loadMessages(messages) {
+    //////ACTUALISATION OF MESSAGES/////
+    setInterval(function(){                
+        if( tchatIsOpened === true) {
+            loadMessages();
+        }
+    }, 10000);    
+
+
+    function loadMessages() {
+        $.ajax({
+            url : getMessageUrl,
+            type : 'GET',
+            dataType : 'json',
+            success : function(messages, statut){           
+                viewMessages(messages);
+            },    
+            error : function(resultat, statut, erreur){    
+            }    
+         }); 
+    }
+    function viewMessages(messages) {
         var html = '';
         messages.forEach(message => {
             html += "<div>"+message.message+"</div>";
-        });
-        $('.conversation_output').html(html);
-    }
+        });        
+        $('.conversation_output').html(html);  
+    } 
+    function sendMessage(message) {
+        $.ajax({        
+            url : sendMessageUrl,  
+            type : 'POST',     
+            dataType : 'json',
+            data : {                
+                message : message
+            },
+            success : function(statut){           
+                loadMessages();
+            }, 
+        })
+    }   
     
+    //////ADD MESSAGE//////
+    $(".conversation_input_icon_btn").click(function(){
+        var inpt = $.trim($("#inpt_message").val()); 
+        sendMessage(inpt);   
+        loadMessages();      
+        $('#inpt_message').val('');        
+    });
 
     /////////HIDE TCHAT///////
     $('.tchat_slide').on('click', function() {   
@@ -47,6 +90,7 @@ $(function(){
     ////////CLOSE TCHAT//////  
     $('.tchat_close').on('click', function() { 
         $('.tchat').css('display', 'none'); 
+        tchatIsOpened = false;
     });
     /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {

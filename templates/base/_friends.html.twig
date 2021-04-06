@@ -13,15 +13,20 @@
     <hr>    
     
 
-        {% for user in users %}
-        <div class="friends">
-
+        {% for friend in friends %}
+        <div class="friends"
+            data-get-message-url="{{ path('message', {id: friend.id}) }}"
+            data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
+            data-friend-pseudo="{{friend.pseudo}}"
+        >
+    
             <img src="{{ asset('upload/img/pacman.jpg')}}" alt="friends_img">
-            <h5>{{ user.pseudo }}</h5>    
+            <h5>{{ friend.pseudo }}</h5>    
     
         </div>
         {% endfor %}
 
+      
        
 
 </div>
