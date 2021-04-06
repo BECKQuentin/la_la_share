@@ -53,4 +53,23 @@ class BaseController extends AbstractController
             
         ]);
     }
+
+    /**
+     * @Route("/redirect-user", name="redirect_user")
+     */
+    public function redirectUser()
+    {
+        //dd($this->getUser()->getRoles());
+        //dd($this->isGranted('ROLE_ADMIN'));
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin');
+        }
+        elseif ($this->isGranted('ROLE_MEMBER')) {
+            return $this->redirectToRoute('member');
+        }
+        else {
+            return $this->redirectToRoute('home');
+        }
+    }
 }
