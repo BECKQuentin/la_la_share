@@ -5,12 +5,13 @@ $(function(){
     var tchatIsOpened = false;
 
     //////DEPLOY TCHAT WINDOW/////
-    $(".friends").click(function() { 
+    $(".friends, .admin_contact").click(function() {        
         tchatIsOpened = true;
         //recuper id/friend et afficher dans titre du tchat
         getMessageUrl = $(this).data('getMessageUrl');
         sendMessageUrl = $(this).data('sendMessageUrl');
         $('#tchat h5').text($(this).data('friendPseudo'));
+        $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
         loadMessages();  
         console.log(tchatIsOpened);
         if (tchatIsOpened === true) {
