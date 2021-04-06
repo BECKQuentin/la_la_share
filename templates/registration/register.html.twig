@@ -8,7 +8,7 @@
     {% endfor %}
 
     <div class="row">
-        <div class="col-lg-4 mx-auto">
+        <div class="col-mx-auto">
             <h1>Inscription</h1>
             
             {{ form_start(registrationForm) }}
@@ -19,6 +19,7 @@
                 {{ form_row(registrationForm.image) }}
                 {{ form_row(registrationForm.plainPassword) }}
                 {{ form_row(registrationForm.agreeTerms) }}
+                
                 {{ form_row(registrationForm.submit) }}        
             {{ form_end(registrationForm) }}
 

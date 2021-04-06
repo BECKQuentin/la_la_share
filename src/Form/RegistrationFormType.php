@@ -34,7 +34,9 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Choisissez un pseudo',
             ])
             ->add('image', FileType::class, [
-                'label' => 'Avatar'
+                'label' => 'Avatar',
+                'mapped' => false,
+                'required' => false
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "J'accepte les <a href='#' data-bs-toggle='modal' data-bs-target='#termsModal'>conditions générales d'utilisation</a>",

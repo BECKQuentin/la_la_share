@@ -15,8 +15,11 @@
 
         {% for user in users %}
         <div class="friends">
-
-            <img src="{{ asset('upload/img/pacman.jpg')}}" alt="friends_img">
+            {# {% if user.image %}
+                <img src="{{ asset('upload/img/pacman.jpg')}}" alt="friends_default_img">
+            {% else %} #}
+                <img src="{{ asset(user.imagePath) }}" alt="friends_img">
+            {# {% endif %} #}
             <h5>{{ user.pseudo }}</h5>    
     
         </div>

@@ -57,14 +57,31 @@ class User implements UserInterface
     private $pseudo;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $image = 'default_avatar.png';
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $verifiedEmail;
+
+    
+    public function getFullname()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    public function getImageDirectory(): string
+    {
+        return 'img';
+    }
+
+    public function getImagePath(): string{
+        return 'upload/img/' . $this->image;
+    }
+
 
     public function getId(): ?int
     {

@@ -49,6 +49,12 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $image = $form->get('image')->getData();
+            if ($image) {
+                $fileName = $this->uploadService->uploadImage($image, $user);
+                $user->setImage($fileName);
+            }
+
             $user->setRoles(['ROLE_MEMBER']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -66,7 +72,7 @@ class RegistrationController extends AbstractController
                 ],
             ]);
 
-            $this->addFlash("success", "Merci de vérifier votre compte en cliquant sur le lien que nous vous avons envoyé dans le mail.");
+            $this->addFlash("success", "Vous êtes bien enregistré ! Merci de vérifier votre compte en cliquant sur le lien que nous vous avons envoyé dans le mail.");
             return $this->redirectToRoute('app_login');
             // return $guardHandler->authenticateUserAndHandleSuccess(
             //     $user,

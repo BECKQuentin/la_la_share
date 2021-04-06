@@ -7,7 +7,7 @@ parameters:
     email_admin: '%env(EMAIL_ADMIN)%'
     email_developer: '%env(EMAIL_DEVELOPER)%'
     app_env: '%env(APP_ENV)%'
-    upload_image_directory: '%kernel.project_dir%/public/images'
+    upload_image_directory: '%kernel.project_dir%/public/upload/img'
     enabled_locales: [ fr, en ]
 
 services:
@@ -43,6 +43,6 @@ services:
             $emailDeveloper: '%email_developer%'
             $appEnv: '%app_env%'
 
-    # App\Service\UploadService:
-    #     arguments:
-    #         $uploadImageDirectory: '%upload_image_directory%'
+    App\Service\UploadService:
+        arguments:
+            $uploadImageDirectory: '%upload_image_directory%'
