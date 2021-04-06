@@ -10,8 +10,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    color: #fff;
+    box-sizing: border-box;    
 }
 html {    
     font-size: 16px;
@@ -264,7 +263,8 @@ nav li:hover:not(:last-child) {
 
 /*---TCHAT---*/
 
-.tchat {    
+.tchat {   
+    display: none; 
     background-color: var(--tchat-5);    
     z-index: 2;
     height: 350px;

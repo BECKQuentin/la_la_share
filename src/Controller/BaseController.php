@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Repository\FriendsRequestRepository;
 use App\Repository\MusicsRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class BaseController extends AbstractController
 {
@@ -29,12 +32,14 @@ class BaseController extends AbstractController
     }
 
     ////////////////// FRIENDS ///////////////////////////
-    public function friends(string $routeName, UserRepository $userRepository)
+    public function friends(string $routeName, UserRepository $userRepository, FriendsRequestRepository $friendsRequestRepository)
     {        
-        $users = $userRepository->findAll();//remplacer par finMyfriends
+        $user = $userRepository->find(1);//a remplacer par le user connecté
+        $friends = $friendsRequestRepository->findMyFriends($user);    
+         
         return $this->render('base/_friends.html.twig', [            
-            'route_name' => $routeName,
-            'users' => $users            
+            'route_name' => $routeName,            
+            'friends' => $friends            
         ]);     
     }
 
