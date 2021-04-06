@@ -16,6 +16,7 @@
                 {{ form_row(registrationForm.firstname) }}
                 {{ form_row(registrationForm.lastname) }}
                 {{ form_row(registrationForm.pseudo) }}
+                {{ form_row(registrationForm.image) }}
                 {{ form_row(registrationForm.plainPassword) }}
                 {{ form_row(registrationForm.agreeTerms) }}
                 {{ form_row(registrationForm.submit) }}        
@@ -37,6 +38,9 @@
                     </div>
                 </div>
             </div>
+
+            <div class="text-center mt-5">Déjà un compte ? <a href="{{ path('app_login') }}">Connexion</a></div>
+
         </div>
     </div>
 {% endblock %}

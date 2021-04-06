@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,6 +32,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('pseudo', TextType::class, [
                 'label' => 'Choisissez un pseudo',
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Avatar'
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => "J'accepte les <a href='#' data-bs-toggle='modal' data-bs-target='#termsModal'>conditions générales d'utilisation</a>",
