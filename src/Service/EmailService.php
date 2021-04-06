@@ -3,6 +3,9 @@
 namespace App\Service;
 
 use Exception;
+use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 
 class EmailService
 {
@@ -13,21 +16,40 @@ class EmailService
     private $logger;
 
     public function __construct(
+        MailerInterface $mailer,
         string $emailAdmin,
         string $emailDeveloper,
-        string $appEnv
+        string $appEnv,
+        LoggerInterface $mailerLogger
         )
     {
         
     }
 
-    public function send(array $data): void
+    public function send(array $data): bool
     {
-        /*if($this->appEnv === 'dev') {
+        if($this->appEnv === 'dev') {
             if(!isset($data['subject'])) {
                 throw new Exception("You should specify a subject");
             }
             $data['to'] = $this->emailDeveloper;
-        }*/
+        }
+
+        $email = (new TemplatedEmail())
+            ->from($data['from'] ?? $this->emailAdmin)
+            ->to($data['to'] ?? $this->emailAdmin)
+            ->replyTo($data['replyTo'] ?? $data['from'] ?? $this->emailAdmin)
+            ->subject($data['subject'] ?? 'La-la-share')     
+            ->htmlTemplate($data['template'])
+            ->context($data['context'] ?? [])
+        ;
+
+        try {
+            $this->mailer->send($email);
+            return true;
+        } catch (Exception $e) {
+            $this->logger->alert(sprintf("%s in %s at %s : %s", __FUNCTION__, __FILE__, __LINE__, $e->getMessage()));
+        }
+        return false;
     }
 }

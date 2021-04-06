@@ -23,7 +23,8 @@ class RegistrationController extends AbstractController
         Request $request, 
         UserPasswordEncoderInterface $passwordEncoder, 
         GuardAuthenticatorHandler $guardHandler, 
-        WebAuthenticator $authenticator
+        WebAuthenticator $authenticator,
+        EmailService $emailService
         ): Response
     {
         $user = new User();
