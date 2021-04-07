@@ -3,13 +3,15 @@ $(function(){
     var getMessageUrl;
     var sendMessageUrl;
     var tchatIsOpened = false;
+    var tchatIsHide = false;
 
     //////DEPLOY TCHAT WINDOW/////
-    $(".friends, .admin_contact").click(function() {        
+    $(".friends").click(function() {        
         tchatIsOpened = true;
-        //recuper id/friend et afficher dans titre du tchat
-        getMessageUrl = $(this).data('getMessageUrl');
+        //recuper id/friend
+        getMessageUrl = $(this).data('getMessageUrl');        
         sendMessageUrl = $(this).data('sendMessageUrl');
+        //afficher donnees id dans menu du tchat
         $('#tchat h5').text($(this).data('friendPseudo'));
         $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
         loadMessages();  
@@ -18,6 +20,41 @@ $(function(){
             $('.tchat').css('display', 'block');
         }      
     });
+
+    // //////CONTACT ADMIN MEMBER///////
+    // $('.admin_contact').click(function() {
+    //     tchatIsOpened = true;
+    //     //recuperer * role admin 
+    //     getMessageUrl = $(this).data('getMessageUrl');        
+    //     sendMessageUrl = $(this).data('sendMessageUrl');        
+    //     //afficher donnees dans menu du tchat
+    //     $('#tchat h5').text($(this).data('admindPseudo'));
+    //     $('.tchat_menu_info img').attr('src', $(this).data('adminImage'));
+    //     loadMessages();  
+    //     console.log(tchatIsOpened);
+    //     if (tchatIsOpened === true) {
+    //         $('.tchat').css('display', 'block');
+    //     }
+    // });
+
+    ////////CLOSE TCHAT//////  
+    $('.tchat_close').on('click', function() { 
+        $('.tchat').css('display', 'none'); 
+        tchatIsOpened = false;
+    });
+
+    ////////SHOW TCHAT WHEN CLICK///////   
+        $('.friends').on('click', function() {
+            if (tchatIsHide === true) {
+                $( ".tchat" ).animate({
+                    bottom: "+=312",            
+                    }, 600, function() {
+                        //animation complete
+                    tchatIsHide = false;
+                });  
+            }
+        })   
+
     //////ACTUALISATION OF MESSAGES/////
     setInterval(function(){                
         if( tchatIsOpened === true) {
@@ -26,25 +63,7 @@ $(function(){
     }, 10000);    
 
 
-    function loadMessages() {
-        $.ajax({
-            url : getMessageUrl,
-            type : 'GET',
-            dataType : 'json',
-            success : function(messages, statut){           
-                viewMessages(messages);
-            },    
-            error : function(resultat, statut, erreur){    
-            }    
-         }); 
-    }
-    function viewMessages(messages) {
-        var html = '';
-        messages.forEach(message => {
-            html += "<div>"+message.message+"</div>";
-        });        
-        $('.conversation_output').html(html);  
-    } 
+    //////FUNCTION////////
     function sendMessage(message) {
         $.ajax({        
             url : sendMessageUrl,  
@@ -57,42 +76,70 @@ $(function(){
                 loadMessages();
             }, 
         })
-    }   
-    
-    //////ADD MESSAGE//////
-    $(".conversation_input_icon_btn").click(function(){
-        var inpt = $.trim($("#inpt_message").val()); 
-        sendMessage(inpt);   
-        loadMessages();      
-        $('#inpt_message').val('');        
-    });
+    }
 
-    /////////HIDE TCHAT///////
-    $('.tchat_slide').on('click', function() {   
+    function loadMessages() {
+        $.ajax({
+            url : getMessageUrl,
+            type : 'GET',
+            dataType : 'json',
+            success : function(messages, statut){           
+                viewMessages(messages);                
+            },    
+            error : function(resultat, statut, erreur){    
+            }    
+         }); 
+    }
+    
+    function viewMessages(messages) {
+        var html = '';
+        messages.forEach(message => {
+            html += "<div>"+message.message+"</div>";
+        });        
+        $('.conversation_output').html(html); 
+        ///scroll bottom of tchat
+        $('.conversation_output').scrollTop(1000); 
+    } 
+
+    function slideTchat() {
         $('.tchat_slide i').toggleClass('fa-chevron-down'); 
-        $('.tchat_slide i').toggleClass('fa-chevron-up'); 
-        $('.tchat_slide').toggleClass('tchat_up'); 
+        $('.tchat_slide i').toggleClass('fa-chevron-up');
         
-        if ($('.tchat_slide').hasClass('tchat_up') ) {            
+        if (tchatIsHide === false ) {            
             $( ".tchat" ).animate({  
                 bottom: "-=312",            
                 }, 600, function() {
-                // Animation complete.
-            });    
+                //animation complete
+                tchatIsHide = true;
+            });                
         } 
-        else if(!$('.tchat_slide').hasClass('tchat_up')) {                                     
+        else if(tchatIsHide === true) {                                     
             $( ".tchat" ).animate({
                 bottom: "+=312",            
                 }, 600, function() {
-                // Animation complete.
+                    //animation complete
+                tchatIsHide = false;
             });    
-        }        
-    });    
-    ////////CLOSE TCHAT//////  
-    $('.tchat_close').on('click', function() { 
-        $('.tchat').css('display', 'none'); 
-        tchatIsOpened = false;
+        }      
+    }
+    
+    //////ADD MESSAGE//////
+    $(".conversation_input_icon_btn").click(function(){
+        var inpt = $.trim($("#inpt_message").val());
+        if(inpt !== '') {
+            sendMessage(inpt);   
+            loadMessages();      
+            $('#inpt_message').val('');     
+        } 
     });
+
+    
+    /////////HIDE TCHAT///////
+    $('.tchat_slide').on('click', function() {  
+        slideTchat(); 
+    });  
+    
+    
     /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {
         $('.main').removeClass('col-10')   
@@ -107,9 +154,9 @@ $(function(){
         ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');            
-        }   
-                       
+        }               
     });
+
     /////////HIDE FRIENDS BOX///////
     $('.friends_slide').on('click', function() {
         $('.main').removeClass('col-10')   
@@ -118,8 +165,7 @@ $(function(){
         $('.friends_box').toggleClass('show'); 
         $('.friends_box').toggleClass('hide');        
         $('.main').toggleClass('col-9');
-        $('.main').toggleClass('col-8');
-         
+        $('.main').toggleClass('col-8');         
         ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');                        

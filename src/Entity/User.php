@@ -62,7 +62,7 @@ class User implements UserInterface
      * 
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image = 'default_avatar.png';
+    private $image = 'upload/img/default_avatar.png';
 
     /**
      * @ORM\Column(type="boolean", nullable=true)

@@ -34,12 +34,23 @@ class BaseController extends AbstractController
     ////////////////// FRIENDS ///////////////////////////
     public function friends(string $routeName, UserRepository $userRepository, FriendsRequestRepository $friendsRequestRepository)
     {        
-        $user = $userRepository->find(1);//a remplacer par le user connecté
-        $friends = $friendsRequestRepository->findMyFriends($user);    
-         
-        return $this->render('base/_friends.html.twig', [            
-            'route_name' => $routeName,            
-            'friends' => $friends            
+        $connected = false;
+        $friends = null;        
+
+        if($this->IsGranted('ROLE_USER')) {
+            $user = $this->getUser();   
+            $friends = $friendsRequestRepository->findMyFriends($user);
+            
+            $connected = true;
+        }        
+        
+        $admins = $userRepository->findAllAdmin();
+        
+        return $this->render('base/_friends.html.twig', [ 
+            'route_name' => $routeName,   
+            'connected' => $connected,    
+            'friends' => $friends,
+            'admins' => $admins          
         ]);     
     }
 

@@ -1,0 +1,13 @@
+{% extends 'member/index.html.twig' %}
+
+{% block content %}
+    <h5 class="mb-3">Mon profil</h5>
+    <p>{{ user.fullname }}</p>
+    <p>Mon pseudo : {{ user.pseudo }}</p>
+    <img src="{{ asset(user.imagePath) }}" alt="" class="w-25">
+
+
+    <h5 class="my-3"><a href="{{ path('member_update') }}">Modifier mon profil</a></h5>
+
+    {# Liste des autres utilisateurs #}
+{% endblock %}

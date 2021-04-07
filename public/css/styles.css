@@ -10,7 +10,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    color: #fff !important;    
 }
 html {    
     font-size: 16px;
@@ -34,6 +35,15 @@ ul {
 li {
     margin: 0;
     padding: 0;
+}
+input {
+    color: black !important;
+}
+.custom-file-input {
+    color: #fff !important;
+}
+label {
+    color: #fff !important;
 }
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
@@ -201,6 +211,10 @@ nav li:hover {
     justify-content: center;
     align-items: center;
 }
+.add_friends {
+    display: flex;
+    justify-content: center;
+}
 .friends {
     display: flex;
     justify-content: flex-start;
@@ -318,12 +332,13 @@ nav li:hover {
     background-color: var(--tchat-1);    
     overflow-y: scroll;
 }
-.conversation_output p {
+.conversation_output div {
     width: fit-content;
     padding: 2px 5px;
     margin: 2px;
     border-radius: 6px;
     color: #fff;
+    background-color: var(--tchat-4);
 }
 .conversation_output_user {   
     background-color: var(--tchat-2);
@@ -369,10 +384,15 @@ nav li:hover {
 
 /*---FOOTER----*/
 footer {
-    background-color: black;
+    background-color: #181818;
 }
 .footer {
     height: 10%;
+}
+.footer_icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*---KEYFRAMES---*/
