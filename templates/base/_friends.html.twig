@@ -24,7 +24,7 @@
         {% if connected is same as(true) %}
             {% if friends is same as([]) %}   
                 <div class="add_friends">                    
-                    <a href="#">
+                    <a href="{{ path('all_members') }}">
                         <p>Ajouter des amis<p>
                     </a>  
                     <i class="fas fa-user-plus ms-2"></i>

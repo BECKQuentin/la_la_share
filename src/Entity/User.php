@@ -94,7 +94,7 @@ class User implements UserInterface
 
     public function getImageDirectory(): string
     {
-        return 'img';
+        return 'upload/img';
     }
 
     public function getImagePath(): string{

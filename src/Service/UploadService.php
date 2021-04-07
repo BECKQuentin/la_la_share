@@ -7,6 +7,8 @@ use Symfony\Component\String\Slugger\AsciiSlugger;
 
 class UploadService
 {
+    private $uploadImageDirectory;
+    
     public function __construct(
         string $uploadImageDirectory
     )

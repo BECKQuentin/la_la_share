@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\WebAuthenticator;
 use App\Service\EmailService;
+use App\Service\UploadService;
 use Nzo\UrlEncryptorBundle\Encryptor\Encryptor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,7 +27,8 @@ class RegistrationController extends AbstractController
         GuardAuthenticatorHandler $guardHandler, 
         WebAuthenticator $authenticator,
         EmailService $emailService,
-        Encryptor $encryptor
+        Encryptor $encryptor,
+        UploadService $uploadService
         ): Response
     {
         //dd($encryptor->encrypt('emmeline'));
@@ -51,7 +53,7 @@ class RegistrationController extends AbstractController
 
             $image = $form->get('image')->getData();
             if ($image) {
-                $fileName = $this->uploadService->uploadImage($image, $user);
+                $fileName = $uploadService->uploadImage($image, $user);
                 $user->setImage($fileName);
             }
 
