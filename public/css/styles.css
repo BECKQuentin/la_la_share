@@ -96,11 +96,10 @@ nav li {
 nav a:hover {
     color: #fff;    
 }
-nav li:hover:not(:last-child) {
+nav li:hover {
     animation: growUp 1s forwards;
 }
 #navigation {   
-    width: 450px;
     border-radius: 5px;
     border: 1px solid #303436;   
 }
@@ -197,13 +196,10 @@ nav li:hover:not(:last-child) {
     border-radius: 15px;
 }
 /*-----FRIENDS----*/
-.admin_contact img {
-    margin: 10px;    
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
+.admin_contact h5 {
+    margin-right: 5px;
 }
-.admin_contact {
+.admin_contact {    
     display: flex;
     justify-content: center;
     align-items: center;
