@@ -29,7 +29,7 @@ class MessageRepository extends ServiceEntityRepository
             ->setParameter('viewer', $viewer)
             ->setParameter('interlocutor', $interlocutor)
             ->orderBy('m.send_at', 'DESC')
-            ->limit('50')
+            ->setMaxResults(50)
             ->getQuery()
             ->getResult()
         ;
