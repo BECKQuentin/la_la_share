@@ -19,7 +19,7 @@ class TchatController extends AbstractController
      */
     public function index(UserRepository $userRepository, FriendsRequestRepository $friendsRequestRepository): Response
     {     
-        $user = $userRepository->find(1);
+        $user = $this->getUser();
         $friends = $friendsRequestRepository->findMyFriends($user);
         
         return $this->render('tchat/index.html.twig', [
@@ -33,8 +33,7 @@ class TchatController extends AbstractController
      */
     public function message(User $friend, MessageRepository $messageRepository, UserRepository $userRepository): Response
     {          
-        // $user = $this->getUser();
-        $user = $userRepository->find(1); //se conneceter 
+        $user = $this->getUser();
         
         $messages = $messageRepository->findConversationBetween($user, $friend);          
         $messagesJson = [];
@@ -54,8 +53,7 @@ class TchatController extends AbstractController
     */
     public function sendTo(User $friend, MessageRepository $messageRepository,Request $request , UserRepository $userRepository): Response
     {
-        // $user = $this->getUser();
-        $user = $userRepository->find(1); //se conneceter
+        $user = $this->getUser();
 
         $inputMessage = $request->request->get('message');
        

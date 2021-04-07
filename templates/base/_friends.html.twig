@@ -6,25 +6,46 @@
 
     <h3>Amis</h3>
 
-    <div class="admin_contact">                
-        <h5>Une question</h5>
-        <i class="fas fa-question"></i>
-    </div>
-
-    <hr> 
-
-        {% for friend in friends %}
-        <div class="friends"
-            data-get-message-url="{{ path('message', {id: friend.id}) }}"
-            data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
-            data-friend-pseudo="{{friend.pseudo}}"
-            data-friend-image="{{friend.image}}"
-        >
-            <img src="{{friend.image}}" alt="avatar_image">
-            <h5>{{ friend.pseudo }}</h5>    
-    
+        <div class="admin_contact">
+            {# {% for admin in admins %}
+            <div class="admin_contact"
+                data-get-message-url="{{ path('message', {id: admin.id}) }}"
+                data-send-message-url="{{ path('send_message', {id: admin.id}) }}"
+                data-friend-pseudo="{{admin.pseudo}}"
+                data-friend-image="{{admin.image}}"
+            >             
+            </div>
+            {% endfor %}         #}
+            <h5>Une question</h5>
+            <i class="fas fa-question"></i>
         </div>
-        {% endfor %}
+    
+    <hr> 
+        {% if connected is same as(true) %}
+            {% if friends is same as([]) %}   
+                <div class="add_friends">                    
+                    <a href="#">
+                        <p>Ajouter des amis<p>
+                    </a>  
+                    <i class="fas fa-user-plus ms-2"></i>
+                </div>        
+            {% else %}                    
+                {% for friend in friends %}
+                <div class="friends"
+                    data-get-message-url="{{ path('message', {id: friend.id}) }}"
+                    data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
+                    data-friend-pseudo="{{friend.pseudo}}"
+                    data-friend-image="{{friend.image}}"
+                >
+                    <img src="{{friend.image}}" alt="avatar_image">
+                    <h5>{{ friend.pseudo }}</h5>  
+                </div>
+                {% endfor %}
+            {% endif %}            
+        {% else %}
+            <p>Vous n'êtes pas connecté(e)</p>            
+        {% endif %}
+        
 
       
        
