@@ -1,23 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La la share{% endblock %}
+{% block title %}La la share | {{ app.user.fullname }}{% endblock %}
 
 {% block body %}
 
 
-<div class="example-wrapper">
-    <h1>Bonjour {{ app.user.lastname }} </h1>
+<div>
+    <h1>Bonjour {{ app.user.fullname }} </h1>
 
-    <div class="text-center mt-5">
-        <h3>Modifier mon profil</h3>
-
+    <div class="text-center mt-5">        
+        {% block content %}{% endblock %}
         
     </div>
 
     <div class="text-center mt-5">
-        <h3>Ajouter une musique</h3>
+        <h5>Ajouter une musique</h5>        
+    </div>
 
-        
+    <div class="text-center mt-5">
+        <h5>Ajouter un ami</h5>        
     </div>
 </div>
 

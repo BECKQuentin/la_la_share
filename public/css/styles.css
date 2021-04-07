@@ -42,7 +42,9 @@ input {
 .custom-file-input {
     color: #fff !important;
 }
-
+label {
+    color: #fff !important;
+}
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
 .musics_box::-webkit-scrollbar,

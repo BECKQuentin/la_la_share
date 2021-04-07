@@ -10,7 +10,7 @@ admin:
 member:
     resource: ../../src/Controller/Member/
     type: annotation
-    prefix: /a/espace-membre
+    prefix: /a/member
 
 kernel:
     resource: ../../src/Kernel.php
