@@ -1,6 +1,73 @@
-$(function(){ 
+$(function(){    
 
-    /////////HIDE CHAT///////
+    var getMessageUrl;
+    var sendMessageUrl;
+    var tchatIsOpened = false;
+
+    //////DEPLOY TCHAT WINDOW/////
+    $(".friends, .admin_contact").click(function() {        
+        tchatIsOpened = true;
+        //recuper id/friend et afficher dans titre du tchat
+        getMessageUrl = $(this).data('getMessageUrl');
+        sendMessageUrl = $(this).data('sendMessageUrl');
+        $('#tchat h5').text($(this).data('friendPseudo'));
+        $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
+        loadMessages();  
+        console.log(tchatIsOpened);
+        if (tchatIsOpened === true) {
+            $('.tchat').css('display', 'block');
+        }      
+    });
+    //////ACTUALISATION OF MESSAGES/////
+    setInterval(function(){                
+        if( tchatIsOpened === true) {
+            loadMessages();
+        }
+    }, 10000);    
+
+
+    function loadMessages() {
+        $.ajax({
+            url : getMessageUrl,
+            type : 'GET',
+            dataType : 'json',
+            success : function(messages, statut){           
+                viewMessages(messages);
+            },    
+            error : function(resultat, statut, erreur){    
+            }    
+         }); 
+    }
+    function viewMessages(messages) {
+        var html = '';
+        messages.forEach(message => {
+            html += "<div>"+message.message+"</div>";
+        });        
+        $('.conversation_output').html(html);  
+    } 
+    function sendMessage(message) {
+        $.ajax({        
+            url : sendMessageUrl,  
+            type : 'POST',     
+            dataType : 'json',
+            data : {                
+                message : message
+            },
+            success : function(statut){           
+                loadMessages();
+            }, 
+        })
+    }   
+    
+    //////ADD MESSAGE//////
+    $(".conversation_input_icon_btn").click(function(){
+        var inpt = $.trim($("#inpt_message").val()); 
+        sendMessage(inpt);   
+        loadMessages();      
+        $('#inpt_message').val('');        
+    });
+
+    /////////HIDE TCHAT///////
     $('.tchat_slide').on('click', function() {   
         $('.tchat_slide i').toggleClass('fa-chevron-down'); 
         $('.tchat_slide i').toggleClass('fa-chevron-up'); 
@@ -20,13 +87,13 @@ $(function(){
                 // Animation complete.
             });    
         }        
-    });
-    ////////CLOSE CHAT//////  
-    $('.musics_close').on('click', function() {     
+    });    
+    ////////CLOSE TCHAT//////  
+    $('.tchat_close').on('click', function() { 
         $('.tchat').css('display', 'none'); 
+        tchatIsOpened = false;
     });
-
-    /////////HIDE MUSICS///////
+    /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {
         $('.main').removeClass('col-10')   
         $('.musics_slide i').toggleClass('fa-chevron-left'); 
@@ -37,13 +104,13 @@ $(function(){
         $('.main').toggleClass('offset-lg-1');            
         $('.main').toggleClass('col-9'); 
         $('.main').toggleClass('col-8');
-        ////////HIDE MUSICS && FRIENDS////////
+        ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');            
         }   
                        
     });
-    /////////HIDE FRIENDS///////
+    /////////HIDE FRIENDS BOX///////
     $('.friends_slide').on('click', function() {
         $('.main').removeClass('col-10')   
         $('.friends_slide i').toggleClass('fa-chevron-left'); 
@@ -53,13 +120,16 @@ $(function(){
         $('.main').toggleClass('col-9');
         $('.main').toggleClass('col-8');
          
-        ////////HIDE MUSICS && FRIENDS////////
+        ////////HIDE MUSICS BOX && FRIENDS BOX////////
         if( ($('.friends_box').hasClass('hide')) && ($('.musics_box').hasClass('hide')) ) {            
             $('.main').addClass('col-10');                        
-        }
-             
+        }             
     });
-   
+
+    ////////CLOSE AUDIO///////////
+    $('.player_musics_menu_close').on('click', function() {
+        $('.player_musics').css('display', 'none');
+    })   
 
     
 

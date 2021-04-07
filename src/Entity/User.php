@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -51,9 +53,53 @@ class User implements UserInterface
     private $lastname;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=255)
      */
     private $pseudo;
+
+    /**
+     * 
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image = 'default_avatar.png';
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $verifiedEmail;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FriendsRequest::class, mappedBy="sender")
+     */
+    private $sentFriendsRequests;
+
+    /**
+     * @ORM\OneToMany(targetEntity=FriendsRequest::class, mappedBy="receiver")
+     */
+    private $receivedFriendsRequests;
+
+   
+
+    public function __construct()
+    {
+        $this->sentFriendsRequests = new ArrayCollection();
+        $this->receivedFriendsRequests = new ArrayCollection();
+    }
+        
+    public function getFullname()
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
+    public function getImageDirectory(): string
+    {
+        return 'img';
+    }
+
+    public function getImagePath(): string{
+        return 'upload/img/' . $this->image;
+    }
 
     public function getId(): ?int
     {
@@ -171,4 +217,89 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVerifiedEmail(): ?bool
+    {
+        return $this->verifiedEmail;
+    }
+
+    public function setVerifiedEmail(bool $verifiedEmail): self
+    {
+        $this->verifiedEmail = $verifiedEmail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FriendsRequest[]
+     */
+    public function getSentFriendsRequests(): Collection
+    {
+        return $this->sentFriendsRequests;
+    }
+
+    public function addSentFriendsRequest(FriendsRequest $sentFriendsRequest): self
+    {
+        if (!$this->sentFriendsRequests->contains($sentFriendsRequest)) {
+            $this->sentFriendsRequests[] = $sentFriendsRequest;
+            $sentFriendsRequest->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentFriendsRequest(FriendsRequest $sentFriendsRequest): self
+    {
+        if ($this->sentFriendsRequests->removeElement($sentFriendsRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($sentFriendsRequest->getSender() === $this) {
+                $sentFriendsRequest->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|FriendsRequest[]
+     */
+    public function getReceivedFriendsRequests(): Collection
+    {
+        return $this->receivedFriendsRequests;
+    }
+
+    public function addReceivedFriendsRequest(FriendsRequest $receivedFriendsRequest): self
+    {
+        if (!$this->receivedFriendsRequests->contains($receivedFriendsRequest)) {
+            $this->receivedFriendsRequests[] = $receivedFriendsRequest;
+            $receivedFriendsRequest->setReceiver($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedFriendsRequest(FriendsRequest $receivedFriendsRequest): self
+    {
+        if ($this->receivedFriendsRequests->removeElement($receivedFriendsRequest)) {
+            // set the owning side to null (unless already changed)
+            if ($receivedFriendsRequest->getReceiver() === $this) {
+                $receivedFriendsRequest->setReceiver(null);
+            }
+        }
+
+        return $this;
+    }
+  
 }

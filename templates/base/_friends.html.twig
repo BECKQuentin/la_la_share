@@ -6,14 +6,27 @@
 
     <h3>Amis</h3>
 
-    <div class="admin_contact">
-        <img src="{{ asset('upload/img/default_avatar.png')}}" alt="admin_img">
-        <h5>Admin</h5>
+    <div class="admin_contact">                
+        <h5>Une question</h5>
+        <i class="fas fa-question"></i>
     </div>
-    <hr>
-    <div class="friends">
-        <img src="{{ asset('upload/img/pacman.jpg')}}" alt="admin_img">
-        <h5>Pac-man</h5>    
-    </div>
+
+    <hr> 
+
+        {% for friend in friends %}
+        <div class="friends"
+            data-get-message-url="{{ path('message', {id: friend.id}) }}"
+            data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
+            data-friend-pseudo="{{friend.pseudo}}"
+            data-friend-image="{{friend.image}}"
+        >
+            <img src="{{friend.image}}" alt="avatar_image">
+            <h5>{{ friend.pseudo }}</h5>    
+    
+        </div>
+        {% endfor %}
+
+      
+       
 
 </div>
