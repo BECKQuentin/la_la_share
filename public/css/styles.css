@@ -381,18 +381,29 @@ nav li:hover {
     animation: growUp 1s forwards;
 }
 
+.search_member button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /*---FOOTER----*/
 footer {
-    background-color: #181818;
+     
 }
 .footer {
     height: 10%;
 }
-.footer_icons {
+.footer_icons {    
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.footer_icons img {
+    height: 33px;
+    width: 33px;
 }
 
 /*---KEYFRAMES---*/

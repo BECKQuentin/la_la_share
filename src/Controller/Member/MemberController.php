@@ -4,6 +4,7 @@ namespace App\Controller\Member;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,4 +65,17 @@ class MemberController extends AbstractController
             'user' => $user
         ]);
     }
+
+    /**
+    * @Route("/all-members", name="all_members")
+    */
+    public function allMembers(UserRepository $userRepository): Response
+    {
+        $members = $userRepository->findAll();
+        
+        return $this->render('member/allMembers.html.twig', [
+            'members' => $members
+        ]);     
+    }
+    
 }
