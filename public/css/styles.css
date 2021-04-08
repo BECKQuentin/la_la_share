@@ -192,7 +192,7 @@ nav li:hover {
     right: 0;
 }
 /*----MUSICS---*/
-.musics_widgets {
+.musics {
     display: flex;
     align-items: center;
     justify-content: center;
