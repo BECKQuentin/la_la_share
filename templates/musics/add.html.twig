@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une musique{% endblock %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-mx-auto">
+            <h1>Ajouter une musique</h1>
+            
+            {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.artist) }}
+                {{ form_row(form.image) }}
+                {{ form_row(form.audio) }}
+                
+                {{ form_row(form.submit) }}        
+            {{ form_end(form) }}
+
+            {# {{ form(form) }} #}
+        </div>
+    </div>
+{% endblock %}

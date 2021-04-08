@@ -9,6 +9,8 @@ parameters:
     app_env: '%env(APP_ENV)%'
     upload_image_directory: '%kernel.project_dir%/public/upload/img'
     public_image_path: '/upload/img'
+    upload_music_directory: '%kernel.project_dir%/public/upload/musics'
+    public_music_path: '/upload/musics'
     enabled_locales: [ fr, en ]
 
 services:
@@ -47,6 +49,7 @@ services:
     App\Service\UploadService:
         arguments:
             $uploadImageDirectory: '%upload_image_directory%'
+            $uploadMusicDirectory: '%upload_music_directory%'
 
     App\Twig\AppExtension:
         arguments:
