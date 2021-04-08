@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MusicsRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,12 +36,22 @@ class Musics
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $img;
+    private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $audio;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
+
+    public function getImageDirectory(): string
+    {
+        return 'albums';
+    }
 
     public function getId(): ?int
     {
@@ -83,14 +94,14 @@ class Musics
         return $this;
     }
 
-    public function getImg(): ?string
+    public function getImage(): ?string
     {
-        return $this->img;
+        return $this->image;
     }
 
-    public function setImg(string $img): self
+    public function setImage(string $image): self
     {
-        $this->img = $img;
+        $this->image = $image;
 
         return $this;
     }

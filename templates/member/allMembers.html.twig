@@ -1,13 +1,21 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+
+    {# Search Member #}
     <h4 class="mb-3">Liste de membres</h4>
     <div class="search_member d-flex mb-3">
-        <input type="text" class="form-control">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Trier par</option>
+            <option value="1">Pseudo croissant</option>
+            <option value="2">Pseudo décroissant</option>
+        </select>
+        <input type="text" class="form-control ms-2">
         <button class="btn btn-primary ms-2">Recherchez<i class="fas fa-search ms-2"></i></button>
     </div>
-    
-    
+
+
+    {# Listing member #}
         <div>
             <table class="table">
                 <thead>
@@ -21,8 +29,8 @@
                 </thead>
                 <tbody>                    
                     {% for member in members %}
-                    <tr>
-                        <th scope="row"><img src="{{ member|image }}" alt="image_avatar"></th>
+                    <tr class="all_members">
+                        <th class="all_members_image"scope="row"><img src="{{ member|image }}" alt="image_avatar"></th>
                         <td>{{member.firstname}}</td>
                         <td>{{member.lastname}}</td>
                         <td>{{member.pseudo}}</td>

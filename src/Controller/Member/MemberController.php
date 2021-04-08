@@ -71,7 +71,7 @@ class MemberController extends AbstractController
     */
     public function allMembers(UserRepository $userRepository): Response
     {
-        $members = $userRepository->findAll();
+        $members = $userRepository->findAllMember();
         
         return $this->render('member/allMembers.html.twig', [
             'members' => $members
