@@ -34,7 +34,27 @@
                         <td>{{member.firstname}}</td>
                         <td>{{member.lastname}}</td>
                         <td>{{member.pseudo}}</td>
-                        <td class="add_friends"><a href="{{ path('add_friend', {id: member.id}) }}"><i class="fas fa-plus ms-3"></i></a></td>
+                        <td class="add_friends">
+                           
+                            {% if app.user.isFriendsWith(member) %}
+                                <p>Vous êtes amis</p>
+                                <button>Quit</button>
+                            {% elseif app.user.isRequestPending(member) %}                             
+                                <p>... Demande envoyée</p>
+                            {% elseif app.user.isRequestReceiving(member) %}
+                                <a href="{{ path('add_friend', {id: member.id}) }}">
+                                    <button class="btn btn-primary">Accepter</button>
+                                </a>
+                                <a href="{{ path('refuse_friend', {id: member.id}) }}">
+                                    <button class="btn btn-danger">Refuser</button>
+                                </a>
+                            {% else %}                                
+                                <a href="{{ path('ask_friend', {id: member.id}) }}">
+                                    <i class="fas fa-plus ms-3"></i>
+                                </a>
+                            {% endif %}
+
+                        </td>
                     </tr>
                     {% endfor %}                   
                 </tbody>
