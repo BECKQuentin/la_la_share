@@ -78,7 +78,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=FriendsRequest::class, mappedBy="receiver")
      */
     private $receivedFriendsRequests;
-
    
 
     public function __construct()
@@ -94,13 +93,9 @@ class User implements UserInterface
 
     public function getImageDirectory(): string
     {
-        return 'upload/img';
+        return 'avatar';
     }
-
-    public function getImagePath(): string{
-        return 'upload/img/' . $this->image;
-    }
-
+    
     public function getId(): ?int
     {
         return $this->id;

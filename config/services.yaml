@@ -8,6 +8,7 @@ parameters:
     email_developer: '%env(EMAIL_DEVELOPER)%'
     app_env: '%env(APP_ENV)%'
     upload_image_directory: '%kernel.project_dir%/public/upload/img'
+    public_image_path: '/upload/img'
     enabled_locales: [ fr, en ]
 
 services:
@@ -46,3 +47,7 @@ services:
     App\Service\UploadService:
         arguments:
             $uploadImageDirectory: '%upload_image_directory%'
+
+    App\Twig\AppExtension:
+        arguments:
+            $publicImagePath: '%public_image_path%'
