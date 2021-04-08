@@ -43,10 +43,10 @@
                                 <p>... Demande envoyée</p>
                             {% elseif app.user.isRequestReceiving(member) %}
                                 <a href="{{ path('add_friend', {id: member.id}) }}">
-                                    <button class="btn btn-primary">Accepter</button>
+                                    <i class="fas fa-check ms-3"></i>
                                 </a>
                                 <a href="{{ path('refuse_friend', {id: member.id}) }}">
-                                    <button class="btn btn-danger">Refuser</button>
+                                    <i class="fas fa-times ms-3"></i>
                                 </a>
                             {% else %}                                
                                 <a href="{{ path('ask_friend', {id: member.id}) }}">
