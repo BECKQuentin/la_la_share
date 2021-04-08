@@ -85,6 +85,55 @@ class User implements UserInterface
         $this->sentFriendsRequests = new ArrayCollection();
         $this->receivedFriendsRequests = new ArrayCollection();
     }
+
+    public function isFriendsWith(User $user): bool
+    {
+        foreach ($this->getFriendsRequests() as $friendRequest) {
+            if( ($this === $friendRequest->getSender() && $user === $friendRequest->getReceiver()
+            || $this === $friendRequest->getReceiver() && $user === $friendRequest->getSender())
+            && $friendRequest->isAccepted() ) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function isRequestPending(User $user): bool
+    {
+        foreach ($this->getFriendsRequests() as $friendRequest) {
+            if( ($this === $friendRequest->getSender() && $user === $friendRequest->getReceiver())
+            && $friendRequest->isAccepted() === false) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isRequestReceiving(User $user): bool
+    {
+        foreach ($this->getFriendsRequests() as $friendRequest) {
+            if( ($this === $friendRequest->getReceiver() && $user === $friendRequest->getSender())
+            && $friendRequest->isAccepted() === false) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /**
+     * @return Collection|FriendsRequest[]
+     */
+    public function getFriendsRequests(): Collection
+    {
+        $friendRequest = new ArrayCollection();
+        foreach ($this->getSentFriendsRequests() as $fr) {
+            $friendRequest->add($fr);
+        }
+        foreach ($this->getReceivedFriendsRequests() as $fr) {
+            $friendRequest->add($fr);
+        }
+        return $friendRequest;
+    }
         
     public function getFullname()
     {

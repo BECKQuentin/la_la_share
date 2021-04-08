@@ -2,8 +2,10 @@
 
 namespace App\Controller\Member;
 
+use App\Entity\FriendsRequest;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\FriendsRequestRepository;
 use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -74,8 +76,48 @@ class MemberController extends AbstractController
         $members = $userRepository->findAllMember();
         
         return $this->render('member/allMembers.html.twig', [
-            'members' => $members
+            'members' => $members            
         ]);     
+    }
+
+    /**
+    * @Route("/ask-friend/{id}", name="ask_friend")
+    */
+    public function askFriend(User $member): Response
+    {
+        $user = $this->getUser();
+
+        $friend = new FriendsRequest();
+        $friend->setSender($user);
+        $friend->setReceiver($member);
+        $friend->setAccepted(0);   
+
+        //email a envoyer 'demande recu && demande envoyé
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($friend);
+        $em->flush();
+        
+        $this->addFlash('success', "Demande envoyée !");
+        return $this->redirectToRoute('all_members', [
+        ]);
+    }
+
+     /**
+    * @Route("/add-friend/{id}", name="add_friend")
+    */
+    public function addFriend(User $member): Response
+    {
+        $user = $this->getUser();
+
+        //changer boolean de la requete friend
+
+        //email a envoyer 'vous etes amis' && 'demande accepté'
+
+        
+        $this->addFlash('success', "Demande acceptée !");
+        return $this->redirectToRoute('all_members', [
+        ]);
     }
     
 }

@@ -19,6 +19,11 @@ class MusicsRepository extends ServiceEntityRepository
         parent::__construct($registry, Musics::class);
     }
 
+    public function findRecentMusics(int $limit = null)
+    {
+        return $this->findBy([], ['id' => 'DESC'], $limit);
+    }
+
     // /**
     //  * @return Musics[] Returns an array of Musics objects
     //  */
