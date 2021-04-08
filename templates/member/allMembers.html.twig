@@ -34,7 +34,7 @@
                         <td>{{member.firstname}}</td>
                         <td>{{member.lastname}}</td>
                         <td>{{member.pseudo}}</td>
-                        <td class="add_friends"><a href="#"><i class="fas fa-plus ms-3"></i></a></td>
+                        <td class="add_friends"><a href="{{ path('add_friend', {id: member.id}) }}"><i class="fas fa-plus ms-3"></i></a></td>
                     </tr>
                     {% endfor %}                   
                 </tbody>

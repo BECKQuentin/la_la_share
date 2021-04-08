@@ -2,8 +2,10 @@
 
 namespace App\Controller\Member;
 
+use App\Entity\FriendsRequest;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\FriendsRequestRepository;
 use App\Repository\UserRepository;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -76,6 +78,27 @@ class MemberController extends AbstractController
         return $this->render('member/allMembers.html.twig', [
             'members' => $members
         ]);     
+    }
+
+    /**
+    * @Route("/add-friend/{id}", name="add_friend")
+    */
+    public function addFriend(User $member): Response
+    {
+        $user = $this->getUser();
+
+        $friend = new FriendsRequest;
+        $friend->setSender($user);
+        $friend->setReceiver($member);
+        $friend->setAccepted(0);    
+
+        $em = $this->getDoctrine()->getManager();
+        
+        $em->persist($friend);
+        $em->flush();       
+    
+        $this->addFlash('success', "Demande envoyée !");
+        return $this->redirectToRoute('all_members');  
     }
     
 }
