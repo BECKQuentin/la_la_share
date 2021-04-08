@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Musics;
 use App\Form\MusicType;
+use App\Repository\MusicsRepository;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,16 +19,18 @@ class MusicsController extends AbstractController
     /**
      * @Route("/musics", name="musics")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function index(MusicsRepository $musicsRepository): Response
     {
+        $musics = $musicsRepository->findAll();
+
         return $this->render('musics/musics.html.twig', [
-            
+            'musics' => $musics
         ]);
     }
 
     /**
      * @Route("/musics/create", name="music_create")
-     * @IsGranted("ROLE_MEMBER", message="Seuls les membres peuvent ajouter des musiques")
+     * @IsGranted("ROLE_USER", message="Seuls les membres peuvent ajouter des musiques")
      */
     public function musicCreate(Request $request, UploadService $uploadService)
     {

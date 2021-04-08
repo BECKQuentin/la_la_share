@@ -3,7 +3,6 @@
 {% block title %}Musics{% endblock %}
 
 {% block body %}
-
     <div class="player_musics">
         <div class="player_musics_menu">
             <div class="player_musics_menu_share">
@@ -13,12 +12,18 @@
                 <i class="fas fa-times"></i>
             </div>            
         </div>
+
         <div class="player_musics_img">
-            <img src="{{ asset('upload/musics/img/test.jpg') }}" alt="">
-        </div> 
+            <img src="{{ music|image }}" alt="">
+        </div>
+
+        <div class="player_musics_title_artist">
+            <p>{{ music.artist }} - {{ music.title }} </p>
+        </div>
+
         <div class="player_musics_audio">
             <audio controls preload="auto">
-                <source src="{{ asset('upload/musics/musics/keken.mp3') }}" type="audio/mpeg">
+                <source src="{{ music.audio }}" type="audio/mpeg">
 
                 <!-- fallback pour les navigateurs qui ne supportent pas mp3 -->
                 <source src="{{ asset('upload/musics/musics/keken.ogg') }}" type="audio/ogg">
@@ -27,7 +32,6 @@
                 <a href="audiofile.mp3">Download</a>
             </audio>        
         </div>   
-    </div> 
-
-
+    </div>
+     
 {% endblock %}
