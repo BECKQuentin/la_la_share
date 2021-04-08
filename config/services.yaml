@@ -53,4 +53,5 @@ services:
 
     App\Twig\AppExtension:
         arguments:
-            $publicImagePath: '%public_image_path%'
+            $publicImagePath: '%public_image_path%'   
+            $publicMusicPath: '%public_music_path%'

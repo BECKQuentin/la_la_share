@@ -223,7 +223,7 @@ nav li:hover {
 }
 .admin_contact:hover,
 .friends:hover,
-.musics_widgets:hover {    
+.musics:hover {    
     cursor: pointer;
     background-color: #333333;
     animation: growUp 1s forwards;
@@ -236,7 +236,7 @@ nav li:hover {
 }
 /*---CARD AUDIO---*/
 .player_musics {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;

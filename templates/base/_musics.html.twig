@@ -11,8 +11,10 @@
     {# Listing_musiques #}
     {% for music in musics %}
         <div class="musics"
-            data-musics-audio="{{ music.audio }}"
+            data-musics-audio="{{ music|music }}"
             data-musics-image="{{ music|image }}"
+            data-musics-artist="{{ music.artist }}"
+            data-musics-title="{{ music.title }}"
             >
             <div class="musics_widgets_img pb-2">
                 <img src="{{ asset(music|image) }}" alt="image de {{music.title}}">
@@ -22,17 +24,7 @@
                 <p>{{ music.artist }}</p>
             </div>       
         </div>
-
-
-        {# <div class="friends"
-            data-get-message-url="{{ path('message', {id: friend.id}) }}"
-            data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
-            data-friend-pseudo="{{friend.pseudo}}"
-            data-friend-image="{{friend.image}}"
-        >
-            <img src="{{friend.image}}" alt="avatar_image">
-            <h5>{{ friend.pseudo }}</h5>  
-        </div> #}
+       
     {% endfor %}
     
 </div>

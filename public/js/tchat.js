@@ -14,8 +14,7 @@ $(function(){
         //afficher donnees id dans menu du tchat
         $('#tchat h5').text($(this).data('friendPseudo'));
         $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
-        loadMessages();  
-        console.log(tchatIsOpened);
+        loadMessages(); 
         if (tchatIsOpened === true) {
             $('.tchat').css('display', 'block');
         }      
