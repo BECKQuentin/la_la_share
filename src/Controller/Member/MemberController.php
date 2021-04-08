@@ -119,5 +119,22 @@ class MemberController extends AbstractController
         return $this->redirectToRoute('all_members', [
         ]);
     }
+
+    /**
+    * @Route("/refuse-friend/{id}", name="refuse_friend")
+    */
+    public function refuseFriend(User $member): Response
+    {
+        $user = $this->getUser();
+
+        //changer boolean de la requete friend
+
+        //email a envoyer 'vous etes amis' && 'demande accepté'
+
+        
+        $this->addFlash('success', "Demande refusée !");
+        return $this->redirectToRoute('all_members', [
+        ]);
+    }
     
 }
