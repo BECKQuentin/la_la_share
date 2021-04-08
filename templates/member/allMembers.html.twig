@@ -22,11 +22,11 @@
                 <tbody>                    
                     {% for member in members %}
                     <tr>
-                        <th scope="row"><img src="{{member.image}}" alt="avatar-img"></th>
+                        <th scope="row"><img src="{{ member|image }}" alt="image_avatar"></th>
                         <td>{{member.firstname}}</td>
                         <td>{{member.lastname}}</td>
                         <td>{{member.pseudo}}</td>
-                        <td><i class="fas fa-plus ms-3"></i></td>
+                        <td class="add_friends"><a href="#"><i class="fas fa-plus ms-3"></i></a></td>
                     </tr>
                     {% endfor %}                   
                 </tbody>

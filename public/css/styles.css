@@ -271,8 +271,8 @@ nav li:hover {
     cursor: pointer;
 }
 
-/*---TCHAT---*/
 
+/*---TCHAT---*/
 .tchat {   
     display: none; 
     background-color: var(--tchat-5);    
@@ -387,11 +387,13 @@ nav li:hover {
     align-items: center;
 }
 
+/*--ADD FRIENDS--*/
+.add_friends a:hover {
+    animation: growUp 1s forwards;
+}
+
 
 /*---FOOTER----*/
-footer {
-     
-}
 .footer {
     height: 10%;
 }
