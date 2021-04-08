@@ -30,7 +30,11 @@ class FriendsRequest
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $accepted;   
+    private $accepted; 
+
+    public function hasMember(User $user): bool {
+        return $user === $this->getSender() || $user === $this->getReceiver();
+    }
 
     public function getId(): ?int
     {

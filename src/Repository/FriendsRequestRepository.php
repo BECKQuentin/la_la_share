@@ -39,7 +39,6 @@ class FriendsRequestRepository extends ServiceEntityRepository
         }
         return $friends;
     }
-
     /*
     public function findOneBySomeField($value): ?FriendsRequest
     {

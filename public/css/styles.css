@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: #fff !important;    
+    color: #fff !important;  
 }
 html {    
     font-size: 16px;
@@ -36,8 +36,9 @@ li {
     margin: 0;
     padding: 0;
 }
-input {
-    color: black !important;
+input,
+select {
+    background-color: #212121 !important;
 }
 .custom-file-input {
     color: #fff !important;
@@ -390,6 +391,15 @@ nav li:hover {
 /*--ADD FRIENDS--*/
 .add_friends a:hover {
     animation: growUp 1s forwards;
+}
+.all_members td,
+.all_members th {
+    min-height: 60px;
+}
+.all_members_image img{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
 }
 
 
