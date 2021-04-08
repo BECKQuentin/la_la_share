@@ -38,17 +38,11 @@ class TchatController extends AbstractController
         $messages = $messageRepository->findConversationBetween($user, $friend);          
         $messagesJson = [];
         foreach ($messages as $message) {
-            if ($message->getSenderId() == $user->getId()) {
-                $send = true;
-            }
-            else {
-                $send = false;
-            }
             $messagesJson[] = [
                 'id' => $message->getId(),
                 'message' => $message->getContent(),
                 'send_at' => $message->getSendAt(),
-                'send' => $send
+                'send' => $message->getSenderId() === $user->getId()
             ];
         }       
     
