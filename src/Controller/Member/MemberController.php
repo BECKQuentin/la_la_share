@@ -146,7 +146,11 @@ class MemberController extends AbstractController
         //email a envoyer 'vous etes amis' && 'demande acceptée'
         $emailService->send([                
             'to' => $user->getEmail(), //if empty => adminEmail
+<<<<<<< HEAD
             'subject' => 'Votre demande a été acceptée',
+=======
+            'subject' => 'Vous avez une nouvel ami',
+>>>>>>> 2cf5425ba03991df95b9bf32bd7d1ce262d7a27f
             'template' => 'email/friend_accepted.html.twig',
             'context' => [
                 'user' => $user,
