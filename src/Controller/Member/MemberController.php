@@ -27,12 +27,15 @@ class MemberController extends AbstractController
     /**
      * @Route("/", name="member")
      */
-    public function index(): Response
+    public function index(FriendsRequestRepository $friendsRequestRepository): Response
     {
         $user = $this->getUser();
 
+        $requests = $friendsRequestRepository->findReceivedFriendsRequestsPending($user);
+
         return $this->render('member/view.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'requests' => $requests
         ]);
     }
 
@@ -123,7 +126,7 @@ class MemberController extends AbstractController
         ): Response
     {
         $user = $this->getUser();
-        $friend = $friendsRequestRepository->findOneBy([$user, $member], []);
+        $friend = $friendsRequestRepository->findOneBy([$user, $member]);
 
         //changer boolean de la requete friend        
         $friend->setSender($user);
@@ -132,7 +135,7 @@ class MemberController extends AbstractController
 
         //email a envoyer 'vous etes amis' && 'demande acceptée'
         $emailService->send([                
-            'to' => '$user->getEmail', //if empty => adminEmail
+            'to' => $user->getEmail(), //if empty => adminEmail
             'subject' => 'Vous avez une nouvelle demande d\'ami',
             'template' => 'email/friend_accepted.html.twig',
             'context' => [

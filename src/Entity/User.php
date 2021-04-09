@@ -134,6 +134,16 @@ class User implements UserInterface
         }
         return $friendRequest;
     }
+
+    /**
+     * @return Collection|FriendsRequest[]
+     */
+    public function getReceivedFriendsRequestsPending(): Collection
+    {
+        return $this->getReceivedFriendsRequests()->filter(function(FriendsRequest $friendRequest) {
+            return $friendRequest->getAccepted() == false;
+        });
+    }
         
     public function getFullname()
     {
