@@ -39,8 +39,10 @@ class TchatController extends AbstractController
         $messagesJson = [];
         foreach ($messages as $message) {
             $messagesJson[] = [
-                'id' => $message->getId(),                
-                'message' => $message->getContent()
+                'id' => $message->getId(),
+                'message' => $message->getContent(),
+                'send_at' => $message->getSendAt(),
+                'send' => $message->getSenderId() === $user->getId()
             ];
         }       
     
