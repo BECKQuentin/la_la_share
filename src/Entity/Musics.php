@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MusicsRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,9 +45,15 @@ class Musics
      */
     private $audio;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Playlist::class, mappedBy="musics")
+     */
+    private $playlists;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
+        $this->playlists = new ArrayCollection();
     }
 
     public function getImageDirectory(): string
@@ -114,6 +122,33 @@ class Musics
     public function setAudio(string $audio): self
     {
         $this->audio = $audio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Playlist[]
+     */
+    public function getPlaylists(): Collection
+    {
+        return $this->playlists;
+    }
+
+    public function addPlaylist(Playlist $playlist): self
+    {
+        if (!$this->playlists->contains($playlist)) {
+            $this->playlists[] = $playlist;
+            $playlist->addMusic($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(Playlist $playlist): self
+    {
+        if ($this->playlists->removeElement($playlist)) {
+            $playlist->removeMusic($this);
+        }
 
         return $this;
     }
