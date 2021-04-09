@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\FriendsRequestRepository;
 use App\Repository\UserRepository;
+use App\Service\EmailService;
 use App\Service\UploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,7 +74,7 @@ class MemberController extends AbstractController
     */
     public function allMembers(UserRepository $userRepository): Response
     {
-        $members = $userRepository->findAllMember();
+        $members = $userRepository->findAllMember($this->getUser());
         
         return $this->render('member/allMembers.html.twig', [
             'members' => $members            
@@ -83,7 +84,7 @@ class MemberController extends AbstractController
     /**
     * @Route("/ask-friend/{id}", name="ask_friend")
     */
-    public function askFriend(User $member): Response
+    public function askFriend(User $member, EmailService $emailService): Response
     {
         $user = $this->getUser();
 
@@ -92,7 +93,16 @@ class MemberController extends AbstractController
         $friend->setReceiver($member);
         $friend->setAccepted(0);   
 
-        //email a envoyer 'demande recu && demande envoyé
+        //email a envoyer 'demande recue' && 'demande envoyée'
+        $emailService->send([
+            'to' => $member->getEmail(), //if empty => adminEmail
+            'subject' => 'Vous avez une nouvelle demande d\'ami',
+            'template' => 'email/send_friend.html.twig',
+            'context' => [
+                'user' => $user,
+                'member' => $member
+            ],
+        ]);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($friend);
@@ -103,17 +113,33 @@ class MemberController extends AbstractController
         ]);
     }
 
-     /**
+    /**
     * @Route("/add-friend/{id}", name="add_friend")
     */
-    public function addFriend(User $member): Response
+    public function addFriend(
+        FriendsRequestRepository $friendsRequestRepository,
+        User $member,
+        EmailService $emailService
+        ): Response
     {
         $user = $this->getUser();
+        $friend = $friendsRequestRepository->findOneBy([$user, $member], []);
 
-        //changer boolean de la requete friend
+        //changer boolean de la requete friend        
+        $friend->setSender($user);
+        $friend->setReceiver($member);
+        $friend->setAccepted(1);
 
-        //email a envoyer 'vous etes amis' && 'demande accepté'
-
+        //email a envoyer 'vous etes amis' && 'demande acceptée'
+        $emailService->send([                
+            'to' => '$user->getEmail', //if empty => adminEmail
+            'subject' => 'Vous avez une nouvelle demande d\'ami',
+            'template' => 'email/friend_accepted.html.twig',
+            'context' => [
+                'user' => $user,
+                'member' => $member
+            ],
+        ]);
         
         $this->addFlash('success', "Demande acceptée !");
         return $this->redirectToRoute('all_members', [
@@ -123,16 +149,17 @@ class MemberController extends AbstractController
     /**
     * @Route("/refuse-friend/{id}", name="refuse_friend")
     */
-    public function refuseFriend(User $member): Response
+    public function refuseFriend(User $member, FriendsRequestRepository $friendsRequestRepository, EmailService $emailService): Response
     {
         $user = $this->getUser();
+        $friend = $friendsRequestRepository->findOneBy([$user, $member], []);
 
-        //changer boolean de la requete friend
-
-        //email a envoyer 'vous etes amis' && 'demande accepté'
-
+        //changer boolean de la requete friend        
+        $friend->setSender($user);
+        $friend->setReceiver($member);
+        $friend->setAccepted(0);   
         
-        $this->addFlash('success', "Demande refusée !");
+        $this->addFlash('warning', "Demande refusée !");
         return $this->redirectToRoute('all_members', [
         ]);
     }

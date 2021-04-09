@@ -52,14 +52,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     // /**
     //  * @return User[] Returns an array of User objects
     //  */    
-    public function findAllMember()
+    public function findAllMember(User $user): array
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.verifiedEmail LIKE :verified_email')
-            ->setParameter('verified_email', 1)
+            ->andWhere('u.id != :user')
+            ->setParameter('verified_email', 1)            
+            ->setParameter('user', $user)
             ->getQuery()
             ->getResult()
         ;
+
     }
 
     /*

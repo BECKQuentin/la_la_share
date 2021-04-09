@@ -56,6 +56,7 @@ class MusicsController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', "La musique a bien été ajoutée");
+            return $this->redirectToRoute('musics');
         }
 
         return $this->render('musics/add.html.twig', [

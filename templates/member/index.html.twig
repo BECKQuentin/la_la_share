@@ -9,16 +9,11 @@
     <h1>Bonjour {{ app.user.fullname }} </h1>
 
     <div class="text-center mt-5">        
-        {% block content %}{% endblock %}
-        
+        {% block content %}{% endblock %}        
     </div>
 
     <div class="text-center mt-5">
-        <h5>Ajouter une musique</h5>        
-    </div>
-
-    <div class="text-center mt-5">
-        <h5>Ajouter un ami</h5>        
+        <h5 class="my-3"><a href="{{ path('all_members') }}">Ajouter un ami</a></h5>
     </div>
 </div>
 

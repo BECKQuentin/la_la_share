@@ -1,0 +1,11 @@
+{% extends "email/base.html.twig" %}
+
+{% block body %}
+
+    Bonjour {{ member.firstname }}, <br><br>
+
+    Vous avez reçue une demande d'ami de {{ user.fullname }}.<br>
+
+    Pour accepter ou refuser, <a href="{{ absolute_url(path('app_register')) }}">connectez-vous</a> et .
+
+{% endblock %}
