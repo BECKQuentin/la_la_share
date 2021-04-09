@@ -22,13 +22,7 @@ interact('.draggable')
 
     // call this function on every dragend event
     end (event) {
-      var textEl = event.target.querySelector('p')
-
-      textEl && (textEl.textContent =
-        'moved a distance of ' +
-        (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                   Math.pow(event.pageY - event.y0, 2) | 0))
-          .toFixed(2) + 'px')
+     
     }
   }
 })
@@ -98,7 +92,7 @@ interact('.dropzone').dropzone({
       inertia: true,
       modifiers: [
         interact.modifiers.restrict({   
-          restriction: 'body',       
+          restriction: 'parent',       
           endOnly: true
         })
       ],

@@ -5,7 +5,7 @@ $(function(){
     //////DEPLOY TCHAT WINDOW/////
     $(".musics").click(function() {   
 
-        // $('.area_player').css('display', 'none');
+        $('.area_player').css('display', 'none');
 
         playerIsOpened = true;
         if (playerIsOpened === true) {
@@ -35,7 +35,7 @@ $(function(){
         $('.player_musics').css('display', 'none'); 
         playerIsOpened = false;
 
-        // $('.area_player').css('display', 'flex');
+        $('.area_player').css('display', 'flex');
         
     });
 
