@@ -63,6 +63,7 @@ class EmailService
             $this->mailer->send($email);
             return true;
         } catch (Exception $e) {
+            throw $e;
             $this->logger->alert(sprintf("%s in %s at %s : %s", __FUNCTION__, __FILE__, __LINE__, $e->getMessage()));
         }
 
