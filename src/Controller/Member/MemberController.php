@@ -162,7 +162,7 @@ class MemberController extends AbstractController
         $friend->setReceiver($member);
         $friend->setAccepted(0);   
         
-        $this->addFlash('warning', "Demande refusée !");
+        $this->addFlash('danger', "Demande refusée !");
         return $this->redirectToRoute('all_members', [
         ]);
     }

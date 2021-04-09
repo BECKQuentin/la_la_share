@@ -78,12 +78,18 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=FriendsRequest::class, mappedBy="receiver")
      */
     private $receivedFriendsRequests;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Playlist::class, mappedBy="id_user")
+     */
+    private $playlists;
    
 
     public function __construct()
     {
         $this->sentFriendsRequests = new ArrayCollection();
         $this->receivedFriendsRequests = new ArrayCollection();
+        $this->playlists = new ArrayCollection();
     }
 
     public function isFriendsWith(User $user): bool
@@ -351,6 +357,33 @@ class User implements UserInterface
             if ($receivedFriendsRequest->getReceiver() === $this) {
                 $receivedFriendsRequest->setReceiver(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Playlist[]
+     */
+    public function getPlaylists(): Collection
+    {
+        return $this->playlists;
+    }
+
+    public function addPlaylist(Playlist $playlist): self
+    {
+        if (!$this->playlists->contains($playlist)) {
+            $this->playlists[] = $playlist;
+            $playlist->addIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlaylist(Playlist $playlist): self
+    {
+        if ($this->playlists->removeElement($playlist)) {
+            $playlist->removeIdUser($this);
         }
 
         return $this;

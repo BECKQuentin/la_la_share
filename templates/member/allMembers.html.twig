@@ -10,7 +10,7 @@
             <option value="1">Pseudo croissant</option>
             <option value="2">Pseudo décroissant</option>
         </select>
-        <input type="text" class="form-control ms-2">
+        <input type="text" class="form-control ms-2" placeholder="Pseudo">
         <button class="btn btn-primary ms-2">Recherchez<i class="fas fa-search ms-2"></i></button>
     </div>
 
@@ -21,9 +21,9 @@
                 <thead>
                     <tr>
                         <th scope="col">Avatar</th>
-                        <th scope="col">Prénom</th>
-                        <th scope="col">Nom</th>
                         <th scope="col">Pseudo</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Nom</th>                        
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -31,9 +31,9 @@
                     {% for member in members %}
                     <tr class="all_members">
                         <th class="all_members_image"scope="row"><img src="{{ member|image }}" alt="image_avatar"></th>
-                        <td>{{member.firstname}}</td>
-                        <td>{{member.lastname}}</td>
                         <td>{{member.pseudo}}</td>
+                        <td>{{member.firstname}}</td>
+                        <td>{{member.lastname}}</td>                        
                         <td class="add_friends">
                            
                             {% if app.user.isFriendsWith(member) %}                                
