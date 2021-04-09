@@ -20,7 +20,7 @@
         <div>            
             {{ render(controller('App\\Controller\\BaseController::header', {'routeName' : route_name } )) }}
 
-            <div class="row gx-0 position-relative">             
+            <div id="area_drag" class="row gx-0 position-relative">             
                 <div class="musics_box show">
                     {{ render(controller('App\\Controller\\BaseController::musics', {'routeName' : route_name } )) }}
                 </div>
@@ -58,6 +58,7 @@
             <script src="{{ asset('js/script.js') }}"></script>
             <script src="{{ asset('js/player.js') }}"></script>
             <script src="{{ asset('js/tchat.js') }}"></script>
+            {# // <script type="module" src="{{ asset('js/dragDrop.js') }}"></script> #}
         {% endblock %}
     </body>
 </html>

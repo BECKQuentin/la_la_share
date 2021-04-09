@@ -5,6 +5,8 @@ $(function(){
     //////DEPLOY TCHAT WINDOW/////
     $(".musics").click(function() {   
 
+        // $('.area_player').css('display', 'none');
+
         playerIsOpened = true;
         if (playerIsOpened === true) {
             $('.player_musics').css('display', 'flex');
@@ -25,22 +27,16 @@ $(function(){
             $('#player')[0].play();
             $('#player').prop('volume', 0.3);
         }, 800);
-
-        // var html = `<audio controls preload="auto" id="player">
-        //                 <source src="${musicsAudio}" type="audio/mp3">
-        //             </audio>`;
-        // $('.player_musics_audio').html(html);
-
-        // setTimeout(() => {            
-        //     $('#player')[0].play();
-        //     $('.audio').prop(volume, 0.5);
-        // }, 500);
     });
 
     ////////CLOSE PLAYER//////  
     $('.player_musics_menu_close').on('click', function() { 
+        $('#player').trigger('pause');
         $('.player_musics').css('display', 'none'); 
         playerIsOpened = false;
+
+        // $('.area_player').css('display', 'flex');
+        
     });
 
 })//jquery

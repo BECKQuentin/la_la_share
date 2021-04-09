@@ -2,10 +2,11 @@
 
 {% block content %}
     <h5 class="mb-3">Mon profil</h5>
-    <p>{{ user.fullname }}</p>
-    <p>Mon pseudo : {{ user.pseudo }}</p>
-    <img src="{{ user|image }}" alt="image_avatar" class="w-25">
 
+    <p class="mb-3">{{ user.fullname }}</p>
+    <p class="mb-3">Mon pseudo : {{ user.pseudo }}</p>
+    
+    <img src="{{ user|image }}" alt="image_avatar" class="w-25">
 
     <h5 class="my-3"><a href="{{ path('member_update') }}">Modifier mon profil</a></h5>
 {% endblock %}

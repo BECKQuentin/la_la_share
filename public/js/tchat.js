@@ -12,7 +12,7 @@ $(function(){
         getMessageUrl = $(this).data('getMessageUrl');        
         sendMessageUrl = $(this).data('sendMessageUrl');
         //afficher donnees id dans menu du tchat
-        $('#tchat h5').text($(this).data('friendPseudo'));
+        $('#tchat h5').text($(this).data('friendPseudo'));        
         $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
         loadMessages(); 
         if (tchatIsOpened === true) {

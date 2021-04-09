@@ -43,6 +43,13 @@ select {
 .custom-file-input {
     color: #fff !important;
 }
+#registration_form_agreeTerms {
+    background-color:  #fff !important;
+}
+#registration_form_agreeTerms:checked {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd;
+}
 label {
     color: #fff !important;
 }
@@ -192,16 +199,26 @@ nav li:hover {
     right: 0;
 }
 /*----MUSICS---*/
+
 .musics {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+.musics_widgets_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
 .musics_widgets_img img {        
     height: 30px;
     width: 30px;
     border-radius: 15px;
+}
+.musics_widgets_info {
+    display: flex;
+    flex-direction: column;
 }
 /*-----FRIENDS----*/
 .admin_contact h5 {
@@ -234,8 +251,22 @@ nav li:hover {
     width: 30px;
     border-radius: 15px;
 }
-/*---CARD AUDIO---*/
-.player_musics {
+/*---PLAYER---*/
+.area_player {
+    border: 2px dashed #303436 ;
+    height: 357px;
+    width: 372px;
+    border-radius: 5px;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+}
+.area_player i {
+    font-size: 1.5rem;
+}
+
+.player_musics {    
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -389,8 +420,13 @@ nav li:hover {
 }
 
 /*--ADD FRIENDS--*/
-.add_friends a:hover {
-    animation: growUp 1s forwards;
+.add_friends {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add_friends a {
+    text-decoration: none;
 }
 .all_members td,
 .all_members th {
@@ -417,6 +453,9 @@ nav li:hover {
     height: 33px;
     width: 33px;
 }
+#cguModal {
+    display: block;
+}
 
 /*---KEYFRAMES---*/
 
@@ -442,3 +481,28 @@ nav li:hover {
       transform: scale(1.16);      
     }
 }
+
+/*-----*/
+ 
+  .drop-active {
+    border-color: #0B3B70;
+  }
+  
+  .drop-target {
+    background-color: #29e;
+    border-color: #fff;
+    border-style: solid;
+  }
+  
+  .drag-drop {    
+    touch-action: none;
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+  
+    transition: background-color 0.3s;
+  }
+  
+  .drag-drop.can-drop {
+    color: #000;
+    background-color: #4e4;
+  }

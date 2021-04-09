@@ -3,6 +3,11 @@
 {% block title %}Musics{% endblock %}
 
 {% block body %}
+    <div class="area_player dropzone">
+        <h5>Placez une musique ICI !</h5>
+        <i class="fas fa-share"></i>
+    </div>
+
     <div class="player_musics">
         <div class="player_musics_menu">
             <div class="player_musics_menu_share">
@@ -25,8 +30,7 @@
             <audio controls preload="auto" id="player">
                 <source src="" type="audio/mp3">
             </audio>
-        </div>
-          
+        </div>          
     </div>
      
 {% endblock %}
