@@ -19,25 +19,40 @@
             <h5>Une question</h5>
             <i class="fas fa-question"></i>
         </div>
-    
-    <hr> 
+        <div class="admin_contact mt-1">
         {% if connected is same as(true) %}
-            {% if friends is same as([]) %}   
-                <div class="add_friends">                    
-                    <a href="{{ path('all_members') }}">
-                        <p>Ajouter des amis<p>
-                    </a>  
-                    <i class="fas fa-user-plus ms-2"></i>
-                </div>        
+            {% if friends is not same as([]) %}
+            <div class="add_friends">                    
+                <a href="{{ path('all_members') }}">
+                    <p>Ajouter des amis</p>
+                </a>  
+                <i class="fas fa-user-plus ms-2"></i>
+            </div>  
+            {% endif %}
+        {% endif %}
+        </div>
+    
+        <hr> 
+
+        {% if connected is same as(true) %}
+            {% if friends is same as([]) %}  
+                <div class="admin_contact">
+                    <div class="add_friends">                    
+                        <a href="{{ path('all_members') }}">
+                            <p>Ajouter des amis<p>
+                        </a>  
+                        <i class="fas fa-user-plus ms-2"></i>
+                    </div>   
+                </div> 
             {% else %}                    
                 {% for friend in friends %}
                 <div class="friends"
                     data-get-message-url="{{ path('message', {id: friend.id}) }}"
                     data-send-message-url="{{ path('send_message', {id: friend.id}) }}"
                     data-friend-pseudo="{{friend.pseudo}}"
-                    data-friend-image="{{friend.image}}"
+                    data-friend-image="{{friend|image}}"
                 >
-                    <img src="{{friend.image}}" alt="avatar_image">
+                    <img src="{{friend|image}}" alt="avatar_image">
                     <h5>{{ friend.pseudo }}</h5>  
                 </div>
                 {% endfor %}

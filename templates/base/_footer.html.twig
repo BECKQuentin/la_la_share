@@ -5,8 +5,28 @@
                 <a href=""><img src="{{asset('upload/img/icons/share_instagram.png') }}" alt="insta"></a>
                 <a href=""><img src="{{asset('upload/img/icons/share_facebook.png') }}" alt="facebook"></a>
             </div> 
-            <a href=""><div class="cgu">Conditions Générales d'Utilisation</div></a>
-            <div class="copyright"><i class="far fa-copyright me-2"></i>Tous droits Réservés</div>
+            <a href='#' data-bs-toggle='modal' data-bs-target='#cguModal'>Conditions Générales d'utilisation</a>
+            <div class="copyright">
+                <i class="far fa-copyright me-2"></i>Tous droits Réservés
+            </div>   
+            
+            <div class="modal fade" id="cguModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Conditions Générales d'utilisation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam nostrum assumenda ipsam obcaecati? Cupiditate repellendus officia quasi architecto aspernatur, animi nulla dolorem laboriosam in ipsam placeat explicabo natus nihil. Labore.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>                
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>           
 </footer>  

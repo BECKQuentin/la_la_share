@@ -12,7 +12,7 @@ $(function(){
         getMessageUrl = $(this).data('getMessageUrl');        
         sendMessageUrl = $(this).data('sendMessageUrl');
         //afficher donnees id dans menu du tchat
-        $('#tchat h5').text($(this).data('friendPseudo'));
+        $('#tchat h5').text($(this).data('friendPseudo'));        
         $('.tchat_menu_info img').attr('src', $(this).data('friendImage'));
         loadMessages(); 
         if (tchatIsOpened === true) {
@@ -91,11 +91,22 @@ $(function(){
     }
     
     function viewMessages(messages) {
-        var html = '';
-        messages.forEach(message => {
-            html += "<div>"+message.message+"</div>";
-        });        
-        $('.conversation_output').html(html); 
+        var html = ''; 
+        var timeMessage = '';       
+        messages.forEach(message => {            
+            if (message.mySend === true) {
+                html += `<div class='myMessage'>
+                            <div>`+message.message+`</div>
+                        </div>`;                                
+            }
+            else if (message.mySend === false) {
+                html += `<div class='friendMessage'>
+                            <div>`+message.message+`</div>                            
+                        </div>`;
+            }  
+        });  
+        
+        $('.conversation_output').html(html);        
         ///scroll bottom of tchat
         $('.conversation_output').scrollTop(1000); 
     } 
@@ -130,12 +141,11 @@ $(function(){
             loadMessages();      
             $('#inpt_message').val('');     
         } 
-    });
-
-    
+    });    
     /////////HIDE TCHAT///////
     $('.tchat_slide').on('click', function() {  
         slideTchat(); 
-    });  
+    }); 
 
+    
 })//jquery

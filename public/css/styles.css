@@ -5,6 +5,7 @@
     --tchat-3:#0C437D;
     --tchat-4:#4170A3;
     --tchat-5:#22364d;
+    --tchat-6:#419BBA;
 }
 /*-GENERAL-*/
 * {
@@ -43,8 +44,19 @@ select {
 .custom-file-input {
     color: #fff !important;
 }
+#registration_form_agreeTerms {
+    background-color:  #fff !important;
+}
+#registration_form_agreeTerms:checked {
+    background-color: #0d6efd !important;
+    border-color: #0d6efd;
+}
 label {
     color: #fff !important;
+}
+.alert-success {
+    background-color: #2e5845 !important;
+    border-color: #2e5845 !important;
 }
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
@@ -192,16 +204,26 @@ nav li:hover {
     right: 0;
 }
 /*----MUSICS---*/
+
 .musics {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
+.musics_widgets_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20px;
+}
 .musics_widgets_img img {        
     height: 30px;
     width: 30px;
     border-radius: 15px;
+}
+.musics_widgets_info {
+    display: flex;
+    flex-direction: column;
 }
 /*-----FRIENDS----*/
 .admin_contact h5 {
@@ -234,15 +256,33 @@ nav li:hover {
     width: 30px;
     border-radius: 15px;
 }
-/*---CARD AUDIO---*/
-.player_musics {
+/*---PLAYER---*/
+.area_player {
+    border: 2px dashed #303436 ;
+    height: 357px;
+    width: 372px;
+    border-radius: 5px;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;  
+}
+.area_player i {
+    font-size: 1.5rem;
+}
+
+.player_musics {    
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 5px 10px 10px 10px;
     border: 1px solid #303436;
-    border-radius: 5px;    
+    border-radius: 5px; 
+    touch-action: none;  
+    user-select: none;
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px); 
 }
 .player_musics_img {
     height: 200px;
@@ -326,26 +366,39 @@ nav li:hover {
 
 
 /*--conversation output--*/
-.conversation_output {
-    margin: 0px 4px;
-    height: 64%;
-    width: auto;
-    background-color: var(--tchat-1);    
-    overflow-y: scroll;
+.myMessage {
+    display: flex;
+    justify-content: flex-end;
+    width: 100% !important;    
 }
-.conversation_output div {
+.friendMessage {   
+    display: flex;
+    justify-content: flex-start;
+    width: 100% !important;   
+}
+.myMessage div,
+.friendMessage div {
     width: fit-content;
     padding: 2px 5px;
     margin: 2px;
     border-radius: 6px;
-    color: #fff;
+    color: #fff; 
+}
+.myMessage div {    
     background-color: var(--tchat-4);
 }
-.conversation_output_user {   
-    background-color: var(--tchat-2);
+.friendMessage div {
+    background-color: var(--tchat-6);
 }
-.conversation_output_friends {
-    background-color: var(--tchat-4);
+.conversation_output {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;            
+    margin: 0px 4px;
+    height: 64%;
+    width: auto;
+    background-color: var(--tchat-1);    
+    overflow-y: scroll;    
 }
 /*--conversation input--*/
 .conversation_input {
@@ -389,8 +442,13 @@ nav li:hover {
 }
 
 /*--ADD FRIENDS--*/
-.add_friends a:hover {
-    animation: growUp 1s forwards;
+.add_friends {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add_friends a {
+    text-decoration: none;
 }
 .all_members td,
 .all_members th {
@@ -401,7 +459,6 @@ nav li:hover {
     width: 40px;
     border-radius: 20px;
 }
-
 
 /*---FOOTER----*/
 .footer {
@@ -442,3 +499,4 @@ nav li:hover {
       transform: scale(1.16);      
     }
 }
+

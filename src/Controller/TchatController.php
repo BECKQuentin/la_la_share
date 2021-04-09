@@ -42,7 +42,7 @@ class TchatController extends AbstractController
                 'id' => $message->getId(),
                 'message' => $message->getContent(),
                 'send_at' => $message->getSendAt(),
-                'send' => $message->getSenderId() === $user->getId()
+                'mySend' => $message->getSenderId() === $user->getId()                
             ];
         }       
     
@@ -62,7 +62,6 @@ class TchatController extends AbstractController
         $message = (new Message())
         ->setContent($inputMessage)
         ->setSenderId($user->getId())
-        // ->setSenderId($this->getUser()->getId())
         ->setReceiverId($friend->getId());        
         
         $em = $this->getDoctrine()->getManager();

@@ -3,12 +3,18 @@
 {% block title %}Musics{% endblock %}
 
 {% block body %}
-
-    <div class="text-center mt-5">
-        <h5 class="my-3"><a href="{{ path('music_create') }}">Ajouter une musique</a></h5>      
+    <div class="text-center">
+        <h5 class="mb-4"><a href="{{ path('music_create') }}">Ajouter une musique</a></h5>      
     </div>
 
-    <div class="player_musics">
+    <div class="area_player">
+        <h5>Lecteur AUDIO !</h5>
+        <i class="fas fa-share"></i>
+    </div>
+
+   
+
+    <div class="player_musics draggable">
         <div class="player_musics_menu">
             <div class="player_musics_menu_share">
                 <i class="fas fa-share"></i>
@@ -30,8 +36,7 @@
             <audio controls preload="auto" id="player">
                 <source src="" type="audio/mp3">
             </audio>
-        </div>
-          
+        </div>          
     </div>
      
 {% endblock %}

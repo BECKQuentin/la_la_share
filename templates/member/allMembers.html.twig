@@ -24,7 +24,7 @@
                         <th scope="col">Prénom</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Pseudo</th>
-                        <th scope="col">Ajouter</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>                    
@@ -36,9 +36,8 @@
                         <td>{{member.pseudo}}</td>
                         <td class="add_friends">
                            
-                            {% if app.user.isFriendsWith(member) %}
-                                <p>Vous êtes amis</p>
-                                <button>Quit</button>
+                            {% if app.user.isFriendsWith(member) %}                                
+                                <button class="btn btn-danger">Ne plus être amis</button>
                             {% elseif app.user.isRequestPending(member) %}                             
                                 <p>... Demande envoyée</p>
                             {% elseif app.user.isRequestReceiving(member) %}

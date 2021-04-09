@@ -15,16 +15,15 @@
             data-musics-image="{{ music|image }}"
             data-musics-artist="{{ music.artist }}"
             data-musics-title="{{ music.title }}"
-            >
-            <div class="musics_widgets_img pb-2">
+        >
+            <div class="musics_widgets_img">
                 <img src="{{ asset(music|image) }}" alt="image de {{music.title}}">
             </div>
             <div class="musics_widgets_info">
                 <p class="fs-5">{{ music.title }}</p>
                 <p>{{ music.artist }}</p>
             </div>       
-        </div>
-       
+        </div>       
     {% endfor %}
     
 </div>
