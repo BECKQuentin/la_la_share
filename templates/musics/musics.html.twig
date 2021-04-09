@@ -3,15 +3,15 @@
 {% block title %}Musics{% endblock %}
 
 {% block body %}
-    <div class="area_player dropzone">
-        <h5>Lecteur Audio !</h5>
+    <div class="area_player">
+        <h5>Lecteur AUDIO !</h5>
         <i class="fas fa-share"></i>
 
     <div class="text-center mt-5">
         <h5 class="my-3"><a href="{{ path('music_create') }}">Ajouter une musique</a></h5>      
     </div>
 
-    <div class="player_musics">
+    <div class="player_musics draggable">
         <div class="player_musics_menu">
             <div class="player_musics_menu_share">
                 <i class="fas fa-share"></i>

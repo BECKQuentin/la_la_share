@@ -10,7 +10,7 @@
 
     {# Listing_musiques #}
     {% for music in musics %}
-        <div id="yes-drop" class="musics drag-drop draggable"
+        <div class="musics"
             data-musics-audio="{{ music|music }}"
             data-musics-image="{{ music|image }}"
             data-musics-artist="{{ music.artist }}"
