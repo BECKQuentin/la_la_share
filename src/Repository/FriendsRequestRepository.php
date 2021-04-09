@@ -43,12 +43,26 @@ class FriendsRequestRepository extends ServiceEntityRepository
     public function findReceivedFriendsRequestsPending(User $user)
     {
         //$entityManager = $this->getEntityManager();
-
         $query = $this->createQueryBuilder('r')
             ->andWhere('r.accepted LIKE :accepted')
             ->andWhere('r.receiver = :user')
             ->setParameter('accepted', 0)
             ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+        return $query;
+    }
+
+    public function findRequestUnaccepted(User $user, User $member)
+    {
+        $query = $this->createQueryBuilder('r')
+            ->orWhere('r.sender = :sender AND r.receiver = :receiver')            
+            ->orWhere('r.sender = :receiver AND r.receiver = :sender') 
+            ->andWhere('r.accepted LIKE :accepted')            
+            ->setParameter('accepted', 0)
+            ->setParameter('receiver', $user)
+            ->setParameter('sender', $member)
             ->getQuery()
             ->getResult()
         ;

@@ -17,7 +17,7 @@
 
         <p>Demandes d'ami en attente : {{ app.user.receivedFriendsRequestsPending.count }} <br> de <br>
             {% for request in app.user.receivedFriendsRequestsPending %}
-                {{ request.sender.fullname }}
+                {{ request.sender.fullname }}</br>
             {% endfor %}
         </p>
     </div>

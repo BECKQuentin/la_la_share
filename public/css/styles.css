@@ -137,8 +137,7 @@ nav li:hover {
 .body {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    height: 800px;
+    flex-direction: column;    
 }
 
 /*-----MUSICS & FRIENDS-----*/
@@ -435,12 +434,6 @@ nav li:hover {
     animation: growUp 1s forwards;
 }
 
-.search_member button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /*--ADD FRIENDS--*/
 .add_friends {
     display: flex;
@@ -460,8 +453,10 @@ nav li:hover {
     border-radius: 20px;
 }
 
+
 /*---FOOTER----*/
 .footer {
+    margin-top: 200px;
     height: 10%;
 }
 .footer_icons {    
