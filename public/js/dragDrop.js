@@ -98,7 +98,7 @@ interact('.dropzone').dropzone({
       inertia: true,
       modifiers: [
         interact.modifiers.restrict({   
-          restriction: 'parent',       
+          restriction: 'body',       
           endOnly: true
         })
       ],

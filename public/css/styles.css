@@ -201,6 +201,8 @@ nav li:hover {
 /*----MUSICS---*/
 
 .musics {
+    position: absolute;
+    z-index: 5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -452,9 +454,6 @@ nav li:hover {
 .footer_icons img {
     height: 33px;
     width: 33px;
-}
-#cguModal {
-    display: block;
 }
 
 /*---KEYFRAMES---*/
