@@ -77,8 +77,21 @@ class MemberController extends AbstractController
     */
     public function allMembers(UserRepository $userRepository): Response
     {
-        $members = $userRepository->findAllMember($this->getUser());
-        
+        if(!empty($_POST['search'])) {
+            $search = $_POST['search']; 
+            $members = $userRepository->findBySearch($this->getUser(), $search);            
+        }
+        else if (!empty($_POST['search_select']) && $_POST['search_select'] == 1) {
+            $search = $_POST['search_select'];
+            $members = $userRepository->findBySelectAsc($this->getUser());
+        }
+        else if (!empty($_POST['search_select']) && $_POST['search_select'] == 2) {
+            $search = $_POST['search_select'];
+            $members = $userRepository->findBySelectDesc($this->getUser());            
+        }
+        else {
+            $members = $userRepository->findAllMember($this->getUser());
+        }        
         return $this->render('member/allMembers.html.twig', [
             'members' => $members            
         ]);     
@@ -93,10 +106,10 @@ class MemberController extends AbstractController
     {
         $user = $this->getUser();
 
-        $friend = new FriendsRequest();
-        $friend->setSender($user);
-        $friend->setReceiver($member);
-        $friend->setAccepted(0);   
+        $friendRequest = new FriendsRequest();
+        $friendRequest->setSender($user);
+        $friendRequest->setReceiver($member);
+        $friendRequest->setAccepted(0);   
 
         //email a envoyer 'demande recue' && 'demande envoyée'
         $emailService->send([
@@ -110,7 +123,7 @@ class MemberController extends AbstractController
         ]);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($friend);
+        $em->persist($friendRequest);
         $em->flush();
         
         $this->addFlash('success', "Demande envoyée !");
@@ -201,5 +214,6 @@ class MemberController extends AbstractController
         return $this->redirectToRoute('all_members', [
         ]);
     }
+    
     
 }

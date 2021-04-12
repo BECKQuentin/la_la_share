@@ -62,7 +62,52 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getQuery()
             ->getResult()
         ;
-
+    }
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */    
+    public function findBySearch(User $user, $search): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.verifiedEmail LIKE :verified_email')
+            ->andWhere('u.id != :user')
+            ->andWhere('u.pseudo = :search')
+            ->setParameter('verified_email', 1)            
+            ->setParameter('user', $user)
+            ->setParameter('search', $search)            
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */    
+    public function findBySelectDesc(User $user): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.verifiedEmail LIKE :verified_email')
+            ->andWhere('u.id != :user')
+            ->orderBy('u.pseudo', 'DESC')
+            ->setParameter('verified_email', 1)            
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */    
+    public function findBySelectAsc(User $user): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.verifiedEmail LIKE :verified_email')
+            ->andWhere('u.id != :user')
+            ->orderBy('u.pseudo', 'ASC')
+            ->setParameter('verified_email', 1)            
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /*

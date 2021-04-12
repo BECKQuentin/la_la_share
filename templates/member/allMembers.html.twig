@@ -4,16 +4,24 @@
 
     {# Search Member #}
     <h4 class="mb-3">Liste de membres</h4>
-    <div class="search_member d-flex mb-3">
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Trier par</option>
-            <option value="1">Pseudo croissant</option>
-            <option value="2">Pseudo décroissant</option>
-        </select>
-        <input type="text" class="form-control ms-2" placeholder="Pseudo">
-        <button class="btn btn-primary ms-2">Recherchez<i class="fas fa-search ms-2"></i></button>
+    <div class="search_member mb-3">
+        <form action="" method="POST" class="d-flex">
+            <div>
+                <select class="form-select" name="search_select">
+                    <option selected>Trier par pseudo</option>
+                    <option value="1">croissant</option>
+                    <option value="2">décroissant</option>
+                </select>   
+            </div>
+            <div>
+                <input type="text" class="form-control mx-2 w-100" placeholder="Pseudo" name="search">          
+            </div>
+            <div>
+                <button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i></button>
+                <a href=" {{ path('all_members') }}"><button class="btn btn-danger"><i class="fas fa-times"></i></button></a>
+            </div>
+        </form>
     </div>
-
 
     {# Listing member #}
         <div>
@@ -51,7 +59,7 @@
                                 </a>
                             {% else %}                                
                                 <a href="{{ path('ask_friend', {id: member.id}) }}">
-                                    <i class="fas fa-plus ms-3"></i>
+                                    <button class="btn btn-secondary"><i class="fas fa-plus"></i></button>
                                 </a>
                             {% endif %}
 
