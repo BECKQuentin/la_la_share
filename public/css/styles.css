@@ -58,6 +58,10 @@ label {
     background-color: #2e5845 !important;
     border-color: #2e5845 !important;
 }
+.alert-danger {
+    background-color: rgb(67, 12, 17) !important;
+    border-color: rgb(106, 17, 26) !important;
+}
 /*----SCROLLBAR----*/
 .main::-webkit-scrollbar,
 .musics_box::-webkit-scrollbar,
