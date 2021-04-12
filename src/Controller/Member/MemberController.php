@@ -87,7 +87,9 @@ class MemberController extends AbstractController
     /**
     * @Route("/ask-friend/{id}", name="ask_friend")
     */
-    public function askFriend(User $member, EmailService $emailService): Response
+    public function askFriend(
+        User $member,
+        EmailService $emailService): Response
     {
         $user = $this->getUser();
 
@@ -117,30 +119,35 @@ class MemberController extends AbstractController
     }
 
     /**
-    * @Route("/add-friend/{id}", name="add_friend")
+    * @Route("/accept-friend-request/{id}", name="accept_friend_request")
     */
-    public function addFriend(
+    public function acceptFriendRequest(
         FriendsRequestRepository $friendsRequestRepository,
-        User $member,
+        User $sender,
         EmailService $emailService
         ): Response
     {
-        $user = $this->getUser();
-        $friend = $friendsRequestRepository->findOneBy([$user, $member]);
-
-        //changer boolean de la requete friend        
-        $friend->setSender($user);
-        $friend->setReceiver($member);
-        $friend->setAccepted(1);
+        $receiver = $this->getUser();
+        
+        $friendRequest = $friendsRequestRepository->findOneBy([
+            'sender' => $sender,
+            'receiver' => $receiver
+        ]);
+        
+        //changer boolean de la requete friend
+        $friendRequest->setAccepted(true);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
 
         //email a envoyer 'vous etes amis' && 'demande acceptée'
         $emailService->send([                
-            'to' => $user->getEmail(), //if empty => adminEmail
+            'to' => $sender->getEmail(), //if empty => adminEmail
             'subject' => 'Vous avez une nouvel ami',
             'template' => 'email/friend_accepted.html.twig',
             'context' => [
-                'user' => $user,
-                'member' => $member
+                'sender' => $sender,
+                'receiver' => $receiver
             ],
         ]);
         
@@ -150,19 +157,47 @@ class MemberController extends AbstractController
     }
 
     /**
-    * @Route("/refuse-friend/{id}", name="refuse_friend")
+    * @Route("/refuse-friend-request/{id}", name="refuse_friend_request")
     */
-    public function refuseFriend(User $member, FriendsRequestRepository $friendsRequestRepository, EmailService $emailService): Response
+    public function refuseFriendRequest(
+        User $sender,
+        FriendsRequestRepository $friendsRequestRepository
+        ): Response
     {
-        $user = $this->getUser();
-        $friend = $friendsRequestRepository->findOneBy([$user, $member], []);
+        $receiver = $this->getUser();
 
-        //changer boolean de la requete friend        
-        $friend->setSender($user);
-        $friend->setReceiver($member);
-        $friend->setAccepted(0);   
+        $friendRequest = $friendsRequestRepository->findOneBy([
+            'sender' => $sender,
+            'receiver' => $receiver
+        ], []);
+
+        //changer boolean de la requete friend
+        $friendRequest->setAccepted(0);
         
         $this->addFlash('danger', "Demande refusée !");
+        return $this->redirectToRoute('all_members', [
+        ]);
+    }
+
+    /**
+    * @Route("/delete-friend/{id}", name="delete_friend")
+    */
+    public function deleteFriend(
+        User $sender,
+        FriendsRequestRepository $friendsRequestRepository
+        ): Response
+    {
+        $receiver = $this->getUser();
+
+        $friendRequest = $friendsRequestRepository->findOneBy([
+            'sender' => $sender,
+            'receiver' => $receiver
+        ]);
+
+        //changer boolean de la requete friend
+        $friendRequest->setAccepted(0);
+        
+        $this->addFlash('danger', "Vous avez enlevé un ami de votre liste d'amis !");
         return $this->redirectToRoute('all_members', [
         ]);
     }
