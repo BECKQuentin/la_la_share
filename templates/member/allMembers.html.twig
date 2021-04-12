@@ -45,17 +45,17 @@
                         <td class="add_friends">
                            
                             {% if app.user.isFriendsWith(member) %}                                
-                                <a href="">
+                                <a href="{{ path('delete_friend', {id: member.id}) }}">
                                     <button class="btn btn-danger">Ne plus être amis</button>
                                 </a>
                             {% elseif app.user.isRequestPending(member) %}                             
                                 <p>... Demande envoyée</p>
                             {% elseif app.user.isRequestReceiving(member) %}
-                                <a href="{{ path('add_friend', {id: member.id}) }}">
-                                    <button class="btn btn-secondary"><i class="fas fa-check"></i></button>
+                                <a href="{{ path('accept_friend_request', {id: member.id}) }}">
+                                    <i class="fas fa-check ms-3"></i>
                                 </a>
-                                <a href="{{ path('refuse_friend', {id: member.id}) }}">
-                                    <button class="btn btn-danger ms-1"><i class="fas fa-times"></i></button>
+                                <a href="{{ path('refuse_friend_request', {id: member.id}) }}">
+                                    <i class="fas fa-times ms-3"></i>
                                 </a>
                             {% else %}                                
                                 <a href="{{ path('ask_friend', {id: member.id}) }}">
