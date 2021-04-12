@@ -13,13 +13,13 @@
     </div>
 
     <div class="text-center mt-5">
-        <h5 class="my-3"><a href="{{ path('all_members') }}">Ajouter un ami</a></h5>
-
         <p>Demandes d'ami en attente : {{ app.user.receivedFriendsRequestsPending.count }} <br> de <br>
             {% for request in app.user.receivedFriendsRequestsPending %}
                 {{ request.sender.fullname }}</br>
             {% endfor %}
         </p>
+
+        <h5 class="my-3"><a href="{{ path('all_members') }}">Ajouter un ami</a></h5>
     </div>
 </div>
 

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contacter un administrateur{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-mx-auto">
+
+            <div class="text-center">
+                <h1>Une question, contactez-nous</h1>
+                <div class="lead">Nous vous répondons rapidement</div>
+            </div>
+
+            {{ form_start(form) }}  
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    {{ form_row(form.nom) }}
+                </div>
+
+                <div class="col-md-6">
+                    {{ form_row(form.prenom) }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.email) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.sujet) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_row(form.message) }}
+            </div>
+
+            <div class="text-end mb-3">
+                {{ form_row(form.submit) }}
+            </div>
+
+            {{ form_end(form) }}
+        
+        </div>
+            
+            <!--<form class="mt-4" method="POST">
+
+                <div class= "d-flex flex-direction: row">
+                    <div class="mb-3 col-6">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" name="nom" id="nom">
+                    </div>
+                    
+                    <div class="mb-3 col-6">
+                        <label for="prenom" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" name="prenom" id="prenom">
+                    </div>
+                </div>
+
+                <div class= "d-flex flex-direction: row">
+                    <div class="mb-3 col-6">
+                        <label for="societe" class="form-label">Société</label>
+                        <input type="text" class="form-control" name="societe" id="societe">
+                    </div>
+                    
+                    <div class="mb-3 col-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Sujet du message</label>
+                    <input type="text" class="form-control" name="subject" id="subject">
+                </div>
+
+                <div class="mb-3">
+                    <label for"message">Message</label>
+                    <textarea name="message" id="message" rows="6" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3 text-end">
+                    <button type="submit" class="btn btn-primary">Envoyer l'email</button>
+                </div>
+            
+            </form>-->
+
+    </div>
+
+{% endblock %}
