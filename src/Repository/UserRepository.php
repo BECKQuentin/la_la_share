@@ -110,6 +110,31 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         ;
     }
 
+     // /**
+    //  * @return User[] Returns an array of User objects
+    //  */    
+    public function userSearch(User $user, array $params): array
+    {
+        if(!empty($params['search'])) {
+            $search = $params['search']; 
+            $members = $this->findBySearch($user, $search);            
+        }
+        else if (!empty($params['search_select']) && $params['search_select'] == 1) {
+           
+            $members = $this->findBySelectAsc($user);
+        }
+        else if (!empty($params['search_select']) && $params['search_select'] == 2) {
+            
+            $members = $this->findBySelectDesc($user);            
+        }
+        else {
+            $members = $this->findAllMember($user);
+        }       
+        return $members; 
+    }
+
+
+    
     /*
     public function findOneBySomeField($value): ?User
     {

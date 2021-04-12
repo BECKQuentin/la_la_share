@@ -10,6 +10,7 @@
 
     {# Listing_musiques #}
     {% for music in musics %}
+        
         <div class="musics"
             data-musics-audio="{{ music|music }}"
             data-musics-image="{{ music|image }}"
@@ -20,10 +21,12 @@
                 <img src="{{ asset(music|image) }}" alt="image de {{music.title}}">
             </div>
             <div class="musics_widgets_info">
-                <p class="fs-5">{{ music.title }}</p>
+                <p class="fs-6">{{ music.title }}</p>
                 <p>{{ music.artist }}</p>
             </div>       
-        </div>       
+        </div>   
+        <hr>
+          
     {% endfor %}
     
 </div>

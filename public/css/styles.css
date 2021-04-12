@@ -212,12 +212,13 @@ nav li:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 5px;
 }
 .musics_widgets_img {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 20px;
+    padding-right: 10px;
 }
 .musics_widgets_img img {        
     height: 30px;
@@ -273,8 +274,7 @@ nav li:hover {
 .area_player i {
     font-size: 1.5rem;
 }
-
-.player_musics {    
+.player_musics { 
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -289,11 +289,13 @@ nav li:hover {
 }
 .player_musics_img {
     height: 200px;
-    width: 350px;    
+    width: 350px;       
+    display: flex;
+    justify-content: center;    
 }
 .player_musics_img img {
-    height: auto; 
-    width: 100%;   
+    max-height: 100%; 
+    width: auto;
 }
 .player_musics_audio {
     padding-top: 16px;
@@ -455,6 +457,31 @@ nav li:hover {
     height: 40px;
     width: 40px;
     border-radius: 20px;
+}
+/*--NEW MUSICS--*/
+.new_music_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.new_music {
+    margin: 20px;
+    height: 200px;
+    width: 150px;
+    border: 1px solid #303436;
+    border-radius: 5px;          
+}
+.new_music_info {
+    display: flex;
+    flex-direction: column; 
+    text-align: center;
+}
+.new_music_image img {
+    height: auto;
+    width: 150px;
+    
 }
 
 

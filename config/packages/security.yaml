@@ -41,6 +41,6 @@ security:
         - { path: ^/a/member/, roles: ROLE_MEMBER }
         - { path: ^/a/, roles: ROLE_USER }
 
-    # role_hierarchy:        
-    #     ROLE_ADMIN: ROLE_MEMBER
-    #     ROLE_USER: IS_AUTHENTICATED_ANONYMOUSLY
+    role_hierarchy:        
+        ROLE_ADMIN: ROLE_MEMBER
+        # ROLE_USER: IS_AUTHENTICATED_ANONYMOUSLY

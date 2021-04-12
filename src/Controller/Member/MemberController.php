@@ -25,8 +25,9 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/", name="member")
-     */
+    * @Route("/", name="member") 
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
+    */
     public function index(FriendsRequestRepository $friendsRequestRepository): Response
     {
         $user = $this->getUser();
@@ -40,9 +41,9 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/member/update", name="member_update")
-     * @IsGranted("ROLE_USER")
-     */
+    * @Route("/member/update", name="member_update")
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
+    */
     public function memberUpdate(Request $request)
     {        
         $user = $this->getUser();
@@ -75,30 +76,16 @@ class MemberController extends AbstractController
     /**
     * @Route("/all-members", name="all_members")
     */
-    public function allMembers(UserRepository $userRepository): Response
-    {
-        if(!empty($_POST['search'])) {
-            $search = $_POST['search']; 
-            $members = $userRepository->findBySearch($this->getUser(), $search);            
-        }
-        else if (!empty($_POST['search_select']) && $_POST['search_select'] == 1) {
-            $search = $_POST['search_select'];
-            $members = $userRepository->findBySelectAsc($this->getUser());
-        }
-        else if (!empty($_POST['search_select']) && $_POST['search_select'] == 2) {
-            $search = $_POST['search_select'];
-            $members = $userRepository->findBySelectDesc($this->getUser());            
-        }
-        else {
-            $members = $userRepository->findAllMember($this->getUser());
-        }        
+    public function allMembers(Request $request, UserRepository $userRepository): Response
+    {        
         return $this->render('member/allMembers.html.twig', [
-            'members' => $members            
+            'members' => $userRepository->userSearch($this->getUser(), $request->request->all())       
         ]);     
     }
 
     /**
     * @Route("/ask-friend/{id}", name="ask_friend")
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function askFriend(
         User $member,
@@ -133,6 +120,7 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/accept-friend-request/{id}", name="accept_friend_request")
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function acceptFriendRequest(
         FriendsRequestRepository $friendsRequestRepository,
@@ -171,7 +159,7 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/refuse-friend-request/{id}", name="refuse_friend_request")
-    */
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")    */
     public function refuseFriendRequest(
         User $sender,
         FriendsRequestRepository $friendsRequestRepository
@@ -183,10 +171,10 @@ class MemberController extends AbstractController
             'sender' => $sender,
             'receiver' => $receiver
         ], []);
-
-        //changer boolean de la requete friend
-        $friendRequest->setAccepted(0);
         
+        $em = $this->getDoctrine()->getManager();        
+        $em->remove($friendRequest);        
+        $em->flush();        
         $this->addFlash('danger', "Demande refusée !");
         return $this->redirectToRoute('all_members', [
         ]);
@@ -194,6 +182,7 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/delete-friend/{id}", name="delete_friend")
+    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function deleteFriend(
         User $sender,
@@ -207,10 +196,11 @@ class MemberController extends AbstractController
             'receiver' => $receiver
         ]);
 
-        //changer boolean de la requete friend
-        $friendRequest->setAccepted(0);
+        $em = $this->getDoctrine()->getManager();        
+        $em->remove($friendRequest);
+        $em->flush();        
         
-        $this->addFlash('danger', "Vous avez enlevé un ami de votre liste d'amis !");
+        $this->addFlash('danger', "Vous n'êtes plus ami avec ".$sender->getPseudo()." !");
         return $this->redirectToRoute('all_members', [
         ]);
     }

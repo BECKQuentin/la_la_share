@@ -1,5 +1,6 @@
-$(function(){  
 
+$(function(){  
+  
 
     /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {

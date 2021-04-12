@@ -1,14 +1,16 @@
-$(function(){ 
+
+$(function(){      
 
     var playerIsOpened = false;
-    
+
+   
     //////DEPLOY TCHAT WINDOW/////
     $(".musics").click(function() {   
 
         $('.area_player').css('display', 'none');
 
         playerIsOpened = true;
-        if (playerIsOpened === true) {
+        if (playerIsOpened === true) {  
             $('.player_musics').css('display', 'flex');
         }
 

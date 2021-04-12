@@ -6,8 +6,14 @@
 
 
 <div>
-    <h1>Bonjour {{ app.user.firstname }}</h1>
+    <h1 class="mb-5">Bonjour {{ app.user.firstname }}</h1>
 
+
+    <div class="text-center mb-2"><a href="">Ajouter une musique</a></div>
+    <div class="text-center mb-2"><a href="">Supprimer une musique</a></div>
+    <div class="text-center mb-2"><a href="">Bannir un utilisateur</a></div>
+    <div class="text-center mb-2"><a href="{{ path('all_members') }}">Supprimer un utilisateur</a></div>
+    
     
 </div>
 {% endblock %}

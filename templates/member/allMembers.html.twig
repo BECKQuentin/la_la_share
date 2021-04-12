@@ -32,7 +32,7 @@
                         <th scope="col">Pseudo</th>
                         <th scope="col">Prénom</th>
                         <th scope="col">Nom</th>                        
-                        <th scope="col">Action</th>
+                        <th scope="col" class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>                    
@@ -44,24 +44,9 @@
                         <td>{{member.lastname}}</td>                        
                         <td class="add_friends">
                            
-                            {% if app.user.isFriendsWith(member) %}                                
-                                <a href="{{ path('delete_friend', {id: member.id}) }}">
-                                    <button class="btn btn-danger">Ne plus être amis</button>
-                                </a>
-                            {% elseif app.user.isRequestPending(member) %}                             
-                                <p>... Demande envoyée</p>
-                            {% elseif app.user.isRequestReceiving(member) %}
-                                <a href="{{ path('accept_friend_request', {id: member.id}) }}">
-                                    <i class="fas fa-check ms-3"></i>
-                                </a>
-                                <a href="{{ path('refuse_friend_request', {id: member.id}) }}">
-                                    <i class="fas fa-times ms-3"></i>
-                                </a>
-                            {% else %}                                
-                                <a href="{{ path('ask_friend', {id: member.id}) }}">
-                                    <button class="btn btn-secondary"><i class="fas fa-plus"></i></button>
-                                </a>
-                            {% endif %}
+                            {% include "member/_memberButtons.html.twig" %}
+
+                            {% include is_granted('ROLE_ADMIN') ? "member/_memberAdminButtons.html.twig" %}
 
                         </td>
                     </tr>

@@ -2,14 +2,16 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="admin")
+     * @Route("/", name="admin")
      */
     public function index(): Response
     {
@@ -17,4 +19,5 @@ class AdminController extends AbstractController
             
         ]);
     }
+
 }

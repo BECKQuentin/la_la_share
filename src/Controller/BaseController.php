@@ -58,10 +58,11 @@ class BaseController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(): Response
+    public function home(MusicsRepository $musicsRepository): Response
     {
+        $musics = $musicsRepository->findRecentMusics(6);
         return $this->render('base/home.html.twig', [
-            
+            'musics' => $musics
         ]);
     }
 
@@ -70,9 +71,7 @@ class BaseController extends AbstractController
      */
     public function redirectUser()
     {
-        //dd($this->getUser()->getRoles());
-        //dd($this->isGranted('ROLE_ADMIN'));
-
+     
         if ($this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin');
         }
