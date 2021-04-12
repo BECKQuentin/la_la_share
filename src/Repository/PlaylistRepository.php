@@ -22,29 +22,16 @@ class PlaylistRepository extends ServiceEntityRepository
     // /**
     //  * @return Playlist[] Returns an array of Playlist objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findAllPlaylists($userId)
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('p.user_id = :user_id')
+            ->setParameter('user_id', $userId)
+            ->orderBy('p.title', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Playlist
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    
 }
