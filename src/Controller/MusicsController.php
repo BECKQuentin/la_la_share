@@ -64,4 +64,15 @@ class MusicsController extends AbstractController
             'musics' => $musics
         ]);
     }
+
+    /**
+    * @Route("/all-musics", name="all_musics")
+    */
+    public function allMembers(Request $request, MusicsRepository $musicsRepository): Response
+    {    
+        $musics = $musicsRepository->findAll();
+        return $this->render('musics/allMusics.html.twig', [
+            'musics' => $musics
+        ]);     
+    }
 }

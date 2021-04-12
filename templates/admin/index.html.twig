@@ -7,13 +7,23 @@
 
 <div>
     <h1 class="mb-5">Bonjour {{ app.user.firstname }}</h1>
+            
+
+    <div class="text-center mt-5">        
+        {% block content %}{% endblock %}        
+    </div>
+   
+    <div class="text-center mt-5">
+        
+        <div class="text-center mb-2"><a href="{{ path('all_musics') }}">Gérer les musiques</a></div>
+        <div class="text-center mb-5"><a href="{{ path('all_members') }}">Gérer les utilisateurs</a></div>
 
 
-    <div class="text-center mb-2"><a href="">Ajouter une musique</a></div>
-    <div class="text-center mb-2"><a href="">Supprimer une musique</a></div>
-    <div class="text-center mb-2"><a href="">Bannir un utilisateur</a></div>
-    <div class="text-center mb-2"><a href="{{ path('all_members') }}">Supprimer un utilisateur</a></div>
-    
-    
+        <p class="mt-2">Demandes d'ami en attente : {{ app.user.receivedFriendsRequestsPending.count }} <br> de <br>
+            {% for request in app.user.receivedFriendsRequestsPending %}
+                {{ request.sender.fullname }}</br>
+            {% endfor %}
+        </p>
+    </div>
 </div>
 {% endblock %}

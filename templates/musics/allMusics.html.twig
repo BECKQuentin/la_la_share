@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {# Search Musiques #}
+    <h4 class="mb-3">Listes de musiques</h4>
+    <div class="search_musics mb-3">
+        <form action="" method="POST" class="d-flex">
+            <div>
+                <select class="form-select" name="search_select_musics">
+                    <option selected>Trier par Artiste</option>
+                    <option value="1">croissant</option>
+                    <option value="2">décroissant</option>
+                </select>   
+            </div>
+            <div>
+                <input type="text" class="form-control mx-2 w-100" placeholder="Artiste" name="search_musics">          
+            </div>
+            <div>
+                <button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i></button>
+                <a href=" {{ path('all_musics') }}"><button class="btn btn-danger"><i class="fas fa-times"></i></button></a>
+            </div>
+        </form>
+    </div>
+
+    {# Listing musiques #}
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image pochette</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Artiste</th>                  
+                        <th scope="col" class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>                    
+                    {% for music in musics %}
+                    <tr class="all_musics">
+                        <th class="all_musics_image" scope="row"><img src="{{ music|image }}" alt="image_album"></th>
+                        <td>{{music.title}}</td>
+                        <td>{{music.artist}}</td>                                                
+                        <td class="action_musics">
+                            
+                            <a href="{#{{ path('add_playlist', {id: music.id}) }}#}">
+                                <button class="btn btn-success"><i class="fas fa-plus"></i><i class="fas fa-music"></i></button>
+                            </a>
+
+                        {% include is_granted('ROLE_ADMIN') ? "musics/_musicsAdminButtons.html.twig" %}
+
+                        </td>
+                    </tr>
+                    {% endfor %}                   
+                </tbody>
+            </table>
+        </div>
+    
+
+{% endblock %}

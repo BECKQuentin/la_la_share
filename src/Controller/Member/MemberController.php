@@ -85,7 +85,6 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/ask-friend/{id}", name="ask_friend")
-    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function askFriend(
         User $member,
@@ -120,7 +119,6 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/accept-friend-request/{id}", name="accept_friend_request")
-    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function acceptFriendRequest(
         FriendsRequestRepository $friendsRequestRepository,
@@ -159,7 +157,7 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/refuse-friend-request/{id}", name="refuse_friend_request")
-    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")    */
+    */
     public function refuseFriendRequest(
         User $sender,
         FriendsRequestRepository $friendsRequestRepository
@@ -182,7 +180,6 @@ class MemberController extends AbstractController
 
     /**
     * @Route("/delete-friend/{id}", name="delete_friend")
-    * @IsGranted("ROLE_USER", message="Seules les membres peuvent faire ça")
     */
     public function deleteFriend(
         User $sender,
@@ -195,7 +192,8 @@ class MemberController extends AbstractController
             'sender' => $sender,
             'receiver' => $receiver
         ]);
-
+        dd($friendRequest);
+        
         $em = $this->getDoctrine()->getManager();        
         $em->remove($friendRequest);
         $em->flush();        

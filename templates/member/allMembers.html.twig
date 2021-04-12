@@ -46,7 +46,10 @@
                            
                             {% include "member/_memberButtons.html.twig" %}
 
-                            {% include is_granted('ROLE_ADMIN') ? "member/_memberAdminButtons.html.twig" %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                {% include "member/_memberAdminButtons.html.twig" %}
+                            {% endif %}
+                            
 
                         </td>
                     </tr>

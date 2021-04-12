@@ -9,16 +9,20 @@
     <p class="my-5 fs-4">Bienvenue, crée vous un compte, ajoutez des musiques, partagez-les !</p>
     
     
-    <h3 class="mt-5">Nouveautés</h3>
+    <h3 class="my-3">- Nouveautés -</h3>
 
     <div class="new_music_box">
         {% for music in musics %}
         <div class="new_music">
-            <div class="new_music_image">   
-                <img src="{{ music|image }}" alt="">
+            <div class="img-ratio" style="--ratio:80%;">   
+                <div class="img">
+                    <img src="{{ music|image }}" alt="">
+                </div>                
             </div>            
             <div class="new_music_info">
-                {{music.artist }} - {{ music.title }}               
+                <div>
+                    {{music.artist }} - {{ music.title }} 
+                </div>                             
             </div>        
         </div>
         {% endfor %}

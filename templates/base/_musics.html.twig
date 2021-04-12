@@ -4,13 +4,16 @@
         <i class="fas fa-chevron-left"></i>
     </div>
 
-    <h3 class="pb-3">Musiques</h3>  
+    <h3>Musiques</h3>  
+    
+    <div class="text-center mb-3"><a href="{{ path('all_musics') }}">Voir tout</a></div>
+
+    <hr>
 
     {# Nouveautés? #}
 
     {# Listing_musiques #}
-    {% for music in musics %}
-        
+    {% for music in musics %}        
         <div class="musics"
             data-musics-audio="{{ music|music }}"
             data-musics-image="{{ music|image }}"

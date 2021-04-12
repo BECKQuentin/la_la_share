@@ -60,7 +60,7 @@ class BaseController extends AbstractController
      */
     public function home(MusicsRepository $musicsRepository): Response
     {
-        $musics = $musicsRepository->findRecentMusics(6);
+        $musics = $musicsRepository->findRecentMusics(10);
         return $this->render('base/home.html.twig', [
             'musics' => $musics
         ]);

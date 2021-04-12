@@ -173,7 +173,7 @@ nav li:hover {
     position: absolute;
     z-index: 2;
     top: 50%;
-    right: 8px;
+    right: 0;
 }
 .friends_slide {
     color: #fff;
@@ -221,9 +221,9 @@ nav li:hover {
     padding-right: 10px;
 }
 .musics_widgets_img img {        
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
+    height: 38px;
+    width: 38px;
+    border-radius: 20px;
 }
 .musics_widgets_info {
     display: flex;
@@ -324,13 +324,13 @@ nav li:hover {
     background-color: var(--tchat-5);    
     z-index: 2;
     height: 350px;
-    width: 25%;
+    width: 20%;
     margin-bottom: 2px;
     border-bottom-left-radius: 0;  
     border-bottom-right-radius: 0;
     border-top-left-radius: 5px;  
     border-top-right-radius: 5px; 
-    transform: translateX(57vw);
+    transform: translateX(62vw);
 }
 .tchat_menu {  
     color: #fff;    
@@ -458,6 +458,19 @@ nav li:hover {
     width: 40px;
     border-radius: 20px;
 }
+/*----Listing Musics--*/
+.all_musics td,
+.all_musics th {
+    min-height: 60px;
+}
+.all_musics_image img{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+.action_musics a{
+ text-decoration: none;
+}
 /*--NEW MUSICS--*/
 .new_music_box {
     display: flex;
@@ -467,21 +480,25 @@ nav li:hover {
     flex-wrap: wrap;
 }
 .new_music {
-    margin: 20px;
+    margin: 15px;
     height: 200px;
-    width: 150px;
+    width: 160px;
     border: 1px solid #303436;
-    border-radius: 5px;          
+    border-radius: 5px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;         
 }
 .new_music_info {
+    height: 25%;
     display: flex;
-    flex-direction: column; 
-    text-align: center;
+    flex-direction: column;       
+    justify-content: center;
+    align-items: center;  
 }
-.new_music_image img {
-    height: auto;
-    width: 150px;
-    
+.new_music:hover {
+    animation: growUp 1s forwards;
+    cursor: pointer;
 }
 
 
@@ -501,8 +518,32 @@ nav li:hover {
     width: 33px;
 }
 
-/*---KEYFRAMES---*/
+/*--IMG RATIO--*/
+.img-ratio {
+    position: relative;
+}
+.img-ratio:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: var(--ratio);
+}
+.img-ratio > .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+}
+.img-ratio > .img > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
+
+/*---KEYFRAMES---*/
 @keyframes growUp {
     from {
       transform: scale(1);      
