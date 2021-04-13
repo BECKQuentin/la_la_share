@@ -7,11 +7,13 @@
     <h3>Amis</h3>
 
         <div class="admin_contact">
-           
-            <h5>Une question</h5>
-            <i class="fas fa-question"></i>
+            <a href="{{ path('contact') }}">
+                <h5>Une question</h5>
+                <i class="fas fa-question"></i>
+            </a>            
         </div>
         <div class="admin_contact mt-1">
+
         {% if connected is same as(true) %}
             {% if friends is not same as([]) %}
             <div class="add_friends">                    
@@ -22,6 +24,7 @@
             </div>  
             {% endif %}
         {% endif %}
+        
         </div>
     
         <hr> 

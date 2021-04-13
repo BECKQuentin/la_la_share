@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lisitng Categories{% endblock %}
+
+{% block body %}
+    {# Listing categories #}
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Catégories</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                    <tr>
+                        <th class="all_members_image" scope="row"><img src="{{ category|image }}" alt="image_category"></th>
+                        <td>{{category.title}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+   
+{% endblock %}

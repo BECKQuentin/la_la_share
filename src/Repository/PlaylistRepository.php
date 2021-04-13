@@ -19,10 +19,14 @@ class PlaylistRepository extends ServiceEntityRepository
         parent::__construct($registry, Playlist::class);
     }
 
+    public function findMostPopularPlaylist(int $limit = null)
+    {
+        return $this->findBy([], ['id' => 'DESC'], $limit);
+    }
+
     // /**
     //  * @return Playlist[] Returns an array of Playlist objects
     //  */
-
     public function findAllPlaylists($user)
     {
         return $this->createQueryBuilder('playlist')

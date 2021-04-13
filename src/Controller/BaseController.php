@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\CategorieRepository;
 use App\Repository\FriendsRequestRepository;
 use App\Repository\MusicsRepository;
+use App\Repository\PlaylistRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,11 +60,18 @@ class BaseController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home(MusicsRepository $musicsRepository): Response
+    public function home(MusicsRepository $musicsRepository,
+    CategorieRepository $categorieRepository,
+    PlaylistRepository $playlistRepository): Response
     {
         $musics = $musicsRepository->findRecentMusics(10);
+        $categories = $categorieRepository->findRecentsCategories(10);
+        $playlists = $playlistRepository->findMostPopularPlaylist(3);
+        
         return $this->render('base/home.html.twig', [
-            'musics' => $musics
+            'musics' => $musics,
+            'categories' => $categories,
+            'playlists' => $playlists
         ]);
     }
 

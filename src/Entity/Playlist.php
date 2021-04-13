@@ -34,10 +34,20 @@ class Playlist
      */
     private $musics;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->id_user = new ArrayCollection();
         $this->musics = new ArrayCollection();
+    }
+
+    public function getImageDirectory(): string
+    {
+        return 'playlist';
     }
 
     public function getId(): ?int
@@ -101,6 +111,18 @@ class Playlist
     public function removeMusic(Musics $music): self
     {
         $this->musics->removeElement($music);
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

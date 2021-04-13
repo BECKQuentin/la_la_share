@@ -233,7 +233,8 @@ nav li:hover {
 .admin_contact h5 {
     margin-right: 5px;
 }
-.admin_contact {    
+.admin_contact a{    
+    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;

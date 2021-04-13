@@ -6,7 +6,7 @@
 
 <div class="text-center">    
     
-    <p class="my-5 fs-4">Bienvenue, crée vous un compte, ajoutez des musiques, partagez-les !</p>
+    <p class="my-5 fs-4">Bienvenue, créez-vous un compte, ajoutez des musiques, partagez-les !</p>
     
     
     <h3 class="my-3">- Nouveautés -</h3>
@@ -22,6 +22,45 @@
             <div class="new_music_info">
                 <div>
                     {{music.artist }} - {{ music.title }} 
+                </div>                             
+            </div>        
+        </div>
+        {% endfor %}
+    </div>
+
+    <h3 class="my-3">- Catégories -</h3>
+
+    <div class="new_music_box">
+        {% for categorie in categories %}
+        <div class="new_music">
+            <div class="img-ratio" style="--ratio:80%;">   
+                <div class="img">
+                    <img src="{{ categorie|image }}" alt="">
+                </div>                
+            </div>            
+            <div class="new_music_info">
+                <div>
+                    {{categorie.title}}
+                </div>                             
+            </div>        
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <h3 class="my-3">- Most popular Playlists -</h3>
+
+    <div class="new_music_box">
+        {% for playlist in playlists %}
+        <div class="new_music">   
+             <div class="img-ratio" style="--ratio:80%;">   
+                <div class="img">
+                    <img src="{{ playlist|image }}" alt="">
+                </div>                
+            </div>                     
+            <div class="new_music_info">
+                <div>
+                    {{playlist.title}}
                 </div>                             
             </div>        
         </div>

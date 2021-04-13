@@ -46,7 +46,12 @@
                                 <button class="btn btn-success"><i class="fas fa-plus"></i><i class="fas fa-music"></i></button>
                             </a>
 
-                        {% include is_granted('ROLE_ADMIN') ? "musics/_musicsAdminButtons.html.twig" %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        
+                            {% include "musics/_musicsAdminButtons.html.twig" %}
+
+                        {% endif %}
+                        
 
                         </td>
                     </tr>

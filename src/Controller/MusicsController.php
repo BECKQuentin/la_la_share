@@ -70,9 +70,10 @@ class MusicsController extends AbstractController
     */
     public function allMusics(Request $request, MusicsRepository $musicsRepository): Response
     {         
-
+        // $musics = $musicsRepository->searchMusic($request->request->all());
+        $musics = $musicsRepository->findAll();
         return $this->render('musics/allMusics.html.twig', [
-            'musics' => $musicsRepository->searchMusic($request->request->all())
+            'musics' => $musics
         ]);     
     }
 }
