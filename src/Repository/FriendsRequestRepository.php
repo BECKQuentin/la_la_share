@@ -69,6 +69,22 @@ class FriendsRequestRepository extends ServiceEntityRepository
         return $query;
     }
 
+    public function deleteFriendAccepted(User $user, User $member)
+    {
+        $query = $this->createQueryBuilder('r')
+            ->orWhere('r.sender = :sender AND r.receiver = :receiver')            
+            ->orWhere('r.sender = :receiver AND r.receiver = :sender') 
+            ->andWhere('r.accepted LIKE :accepted')            
+            ->setParameter('accepted', 1)
+            ->setParameter('receiver', $user)
+            ->setParameter('sender', $member)
+            ->delete()
+            ->getQuery()
+            ->getResult()
+        ;
+        return $query;
+    }
+
     /*
     public function findOneBySomeField($value): ?FriendsRequest
     {

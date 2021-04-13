@@ -17,12 +17,12 @@ class PlaylistController extends AbstractController
      */
     public function index(PlaylistRepository $playlistRepository): Response
     {
-        $userId = $this->getUser()->getId();
+        $user = $this->getUser()->getId();        
 
-        $playlists = $playlistRepository->findAllPlaylists($userId);
+        $playlists = $playlistRepository->findAllPlaylists($user);
 
         return $this->render('playlist/playlist.html.twig', [
-            'playlists' => $playlist,
+            'playlists' => $playlists
         ]);
     }
 

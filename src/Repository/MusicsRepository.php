@@ -63,47 +63,24 @@ class MusicsRepository extends ServiceEntityRepository
         ;
     }
 
-    // // /**
-    // //  * @return Music[] Returns an array of Music objects
-    // //  */    
-    // public function musicsSearch(Musics $musics): array
-    // {
-    //     if(!empty($_POST['search_musics'])) {
-    //         $search = $_POST['search_musics']; 
-    //         $musics = $this->findBySearch($musics, $search);            
-    //     }
-    //     else if (!empty($_POST['search_select']) && $_POST['search_select'] == 1) {
-           
-    //         $musics = $this->findBySelectAsc($musics);
-    //     }
-    //     else if (!empty($_POST['search_select']) && $_POST['search_select'] == 2) {
-            
-    //         $musics = $this->findBySelectDesc($musics);            
-    //     }
-    //     else {
-    //         $musics = $this->findAll($musics);
-    //     }       
-    //     return $musics; 
-    // }
+    
 
-    // public function musicSearch(Musics $musics,  ) {
+    public function searchMusic(array $params ): array
+    {
+        $qb = $this->createQueryBuilder('m');
 
-    //     if(!empty($params['search_musics'])) {            
-    //         $search = $params['search_musics']; 
-    //         $request = $this->findBySearch($musics, $search);            
-    //     }
-    //     else if (!empty($params['search_select_musics']) && $params['search_select_musics'] == 1) {
-           
-    //         $request = $this->findBySelectAsc($musics);
-    //     }
-    //     else if (!empty($params['search_select_musics']) && $params['search_select_musics'] == 2) {
-            
-    //         $request = $this->findBySelectDesc($musics);            
-    //     }
-    //     else {
-    //         $request = $this->findAll();
-    //     }   
-    //     return $request;
-    // }
+        if($search = $params['search_musics'] ?? null) {
+            $qb->orWhere('m.artist LIKE :search')
+                ->orWhere('m.title LIKE :search')
+                ->setParameter('search', "%$search%");
+        }
 
+        if($order = $params['search_select_musics'] ?? null) {
+            if (in_array($order, ['asc', 'desc'])) {
+                $qb->orderBy('m.artist', strtoupper($order));
+            }
+        }
+
+        return $qb->getQuery()->getResult();   
+    }
 }

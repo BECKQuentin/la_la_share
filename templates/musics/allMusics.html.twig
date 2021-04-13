@@ -8,20 +8,20 @@
         <form action="" method="POST" class="d-flex">
             <div>
                 <select class="form-select" name="search_select_musics">
-                    <option selected>Trier par Artiste</option>
-                    <option value="1">croissant</option>
-                    <option value="2">décroissant</option>
+                    <option selected value="0">Trier par Artiste</option>
+                    <option value="asc">croissant</option>
+                    <option value="desc">décroissant</option>
                 </select>   
             </div>
             <div>
-                <input type="text" class="form-control mx-2 w-100" placeholder="Artiste" name="search_musics">          
+                <input type="text" class="form-control mx-2 w-100" placeholder="Recherchez" name="search_musics">          
             </div>
             <div>
                 <button class="btn btn-primary ms-3">Recherchez<i class="fas fa-search ms-2"></i></button>
                 <a href=" {{ path('all_musics') }}"><button class="btn btn-danger"><i class="fas fa-times"></i></button></a>
             </div>
         </form>
-    </div>
+    </div>    
 
     {# Listing musiques #}
         <div>

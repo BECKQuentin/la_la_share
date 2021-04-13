@@ -23,12 +23,13 @@ class PlaylistRepository extends ServiceEntityRepository
     //  * @return Playlist[] Returns an array of Playlist objects
     //  */
 
-    public function findAllPlaylists($userId)
+    public function findAllPlaylists($user)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.user_id = :user_id')
-            ->setParameter('user_id', $userId)
-            ->orderBy('p.title', 'ASC')
+        return $this->createQueryBuilder('playlist')
+            ->leftJoin('playlist.id_user', 'playlist_id_user')
+            ->andWhere('playlist_id_user.id = :user')
+            ->setParameter('user', $user)
+            ->orderBy('playlist.title', 'ASC')
             ->getQuery()
             ->getResult()
         ;

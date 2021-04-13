@@ -188,15 +188,7 @@ class MemberController extends AbstractController
     {
         $receiver = $this->getUser();
 
-        $friendRequest = $friendsRequestRepository->findOneBy([
-            'sender' => $sender,
-            'receiver' => $receiver
-        ]);
-        dd($friendRequest);
-        
-        $em = $this->getDoctrine()->getManager();        
-        $em->remove($friendRequest);
-        $em->flush();        
+        $friendsRequestRepository->deleteFriendAccepted($receiver, $sender);       
         
         $this->addFlash('danger', "Vous n'êtes plus ami avec ".$sender->getPseudo()." !");
         return $this->redirectToRoute('all_members', [

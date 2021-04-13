@@ -1,7 +1,7 @@
 
 $(function(){  
   
-
+    
     /////////HIDE MUSICS BOX///////
     $('.musics_slide').on('click', function() {
         $('.main').removeClass('col-10')   
