@@ -2,25 +2,26 @@
 
 {% block body %}
 
-    {# Listing member #}
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Titre</th>                      
-                        <th scope="col" class="text-center">Voir</th>
-                    </tr>
-                </thead>
-                <tbody>                    
-                    {% for playlist in playlists %}
-                    <tr class="all_members">
-                        <td>{{playlist.title}}</td>                      
-                        <td class="add_friends"></td>
-                    </tr>
-                    {% endfor %}                   
-                </tbody>
-            </table>
-        </div>
+    {# Listing playlist #}
+    <h4 class="mb-3">Toutes vos playlists</h4>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Titre</th>                      
+                    <th scope="col" class="text-center">Ecouter</th>
+                </tr>
+            </thead>
+            <tbody>                    
+                {% for playlist in playlists %}
+                <tr class="all_members">
+                    <td>{{playlist.title}}</td>                      
+                    <td><i class="fas fa-play"></i></td>
+                </tr>
+                {% endfor %}                   
+            </tbody>
+        </table>
+    </div>
     
 
 {% endblock %}
